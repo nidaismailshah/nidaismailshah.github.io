@@ -1,26 +1,50 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Trail Of Love"
 date:   2014-08-02 23:56:05
 categories: jekyll update
 ---
-_junaid_
+Could I not go where the wind took me,
 
+Would you not be with me by then?
 
-You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
-To add new posts, simply add a file in the `_posts` directory that follows the convention: YYYY-MM-DD-name-of-post.ext.
+I translated the unknown into what I did,
 
-Jekyll also offers powerful support for code snippets:
+Did you even spare some specs to hold onto what you wanted?
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+How do I break these branches, trees, your cries,
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh].
+I always end up planting a new one, a branch and a cry.
+
+How do I not hear you?
+
+I knew, and I didn't, the trail you left,
+
+You knew, and you didn't, the trail I left,
+
+How do I stop not looking, how do I not cry?
+
+The lullabies, I do miss, and suddenly
+
+The sky has known how to be less magnetic.
+
+No wishes and no prayers,
+
+The world ain’t music anymore.
+
+I could see the heads bowed down,
+
+Ears listening to what the sky had to show,
+
+They went by, they went through.
+
+Insanity prevailed, misery prevailed,
+
+And then I did see it,
+
+I could see Her;
+
+God! I could, but not. . .
 
 [jekyll-gh]: https://github.com/jekyll/jekyll
 [jekyll]:    http://jekyllrb.com
