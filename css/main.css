@@ -430,3 +430,15 @@ a:visited { color: #205caa; }
 margin: auto;
 margin-top:25px; 
 }
+.medium{
+  float:right;
+  margin-top: 1em;
+}
+.about{
+  max-width: 50%;
+  float:left;
+}
+.about p {
+  margin-top: 1em;
+  font-style: italic;
+}
