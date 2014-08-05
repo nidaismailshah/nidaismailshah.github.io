@@ -2,7 +2,7 @@
 layout: post
 title:  "Trail Of Love"
 date:   2014-08-02 23:56:05
-categories: jekyll update
+categories: poetry
 ---
 Could I not go where the wind took me,
 

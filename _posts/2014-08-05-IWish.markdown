@@ -1,0 +1,56 @@
+---
+layout: post
+title:  "I Wish"
+date:   2014-08-05 14:35:05
+categories: poetry
+---
+
+Here in this valley of flawed emotions
+
+and fake existences
+
+They know me, they all seem familiar to me
+
+And that is a shame.
+
+A loss, so irreparable.
+
+
+These distant lights
+
+i have always wanted to dissolve into, and
+
+When the past has never been so bright before
+
+The horizon is here.
+
+
+The horizon is here, all black in color
+
+I wish i could be as far as the horizon,from myself.
+
+The waters, black sky, bloody clouds
+
+
+I wish i had known how to swim
+
+I wish i had known how to swim
+
+And then not swim and drown, all alone.
+
+
+And on this night of despair
+
+I wish i could be the star that doesn't twinkle
+
+I wish i could be the star that isn't shining tonight
+
+I wish i could be the star that chose not to rise,
+
+I wish i could be the star that doesn't exist.
+
+I wish.
+
+
+[jekyll-gh]: https://github.com/jekyll/jekyll
+[jekyll]:    http://jekyllrb.com

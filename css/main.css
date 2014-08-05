@@ -31,7 +31,11 @@ a:visited { color: #205caa; }
 .wrap:before,
 .wrap:after { content:""; display:table; }
 .wrap:after { clear: both; }
-.site-header .wrap, .site-footer .wrap {
+
+.site-header .wrap{
+  padding: 0 7%;
+}
+.site-footer .wrap {
   max-width: 1024px;
   padding: 0 30px;
   margin: 0 auto;
@@ -47,6 +51,8 @@ a:visited { color: #205caa; }
 .site-header {
   min-height: 56px;
   background-color: rgb(87, 84, 84);
+  height: 100%;
+
 }
 
 .site-title,
@@ -64,14 +70,14 @@ a:visited { color: #205caa; }
 }
 
 .site-nav {
-  float: right;
-  line-height: 56px;
+    line-height: 56px;
 }
 
 .site-nav .menu-icon { display: none; }
 
 .site-nav .page-link {
-  margin-left: 20px;
+  display: block;
+  margin-left: 0px;
   color: #FFF;
   letter-spacing: -.5px;
 }
@@ -125,14 +131,6 @@ a:visited { color: #205caa; }
   color: #828282;
 }
 
-.github-icon-svg,
-.twitter-icon-svg {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  position: relative;
-  top: 3px;
-}
 
 
 /* Page Content styles */
@@ -141,9 +139,14 @@ a:visited { color: #205caa; }
 . {
   background-color: #fff;
 }
-.page-content .wrap{
-  max-width: 100%;
-  margin: auto;
+.page-content,.page-contenth {
+    width: 82%;
+    float: right;
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+    line-height: 2;
+
 }
 
 
@@ -416,9 +419,11 @@ a:visited { color: #205caa; }
 
 }
 .home {
+  height: 100%;
   background-image: linear-gradient(to bottom, #063652 0%, #0081a2 100%);
 }
 .home p {
+  
   text-align: center;
   padding: 3em 0em;
   font-size: 4em;
@@ -426,13 +431,14 @@ a:visited { color: #205caa; }
 }
 /* for different page layout*/
 .page-contentblogh{
-  width: 850px;
+  width: 82%;
 margin: auto;
 margin-top:25px; 
 }
 .medium{
   float:right;
   margin-top: 1em;
+  margin-right: 1em;
 }
 .about{
   max-width: 50%;
@@ -441,4 +447,30 @@ margin-top:25px;
 .about p {
   margin-top: 1em;
   font-style: italic;
+}
+.headercn{
+  margin-top: -3%;
+  margin-left: 13%;
+   position: absolute;
+}
+.headerp,.headerb{
+  float: left;
+  width: 18%;
+  height: 100%;
+
+}
+.headerc{
+  height: 100%;
+}
+.page-content .wrap{
+  height: 100%;
+}
+.page-contenth .wrap{
+  margin-left: 2%;
+}
+.headerb{
+  float: left;
+  width: 18%;
+  height: 100%;
+  position: fixed;
 }

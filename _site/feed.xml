@@ -3,11 +3,65 @@
   <channel>
     <title>Nida Ismail Shah</title>
     <description>Some lines , a bit elaborated</description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 04 Aug 2014 14:14:55 +0530</pubDate>
-    <lastBuildDate>Mon, 04 Aug 2014 14:14:55 +0530</lastBuildDate>
+    <link>http://nidaismailshah.github.io/</link>
+    <atom:link href="http://nidaismailshah.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 05 Aug 2014 15:17:27 +0530</pubDate>
+    <lastBuildDate>Tue, 05 Aug 2014 15:17:27 +0530</lastBuildDate>
     <generator>Jekyll v2.2.0</generator>
+    
+      <item>
+        <title>I Wish</title>
+        <description>&lt;p&gt;Here in this valley of flawed emotions&lt;/p&gt;
+
+&lt;p&gt;and fake existences&lt;/p&gt;
+
+&lt;p&gt;They know me, they all seem familiar to me&lt;/p&gt;
+
+&lt;p&gt;And that is a shame.&lt;/p&gt;
+
+&lt;p&gt;A loss, so irreparable.&lt;/p&gt;
+
+&lt;p&gt;These distant lights&lt;/p&gt;
+
+&lt;p&gt;i have always wanted to dissolve into, and&lt;/p&gt;
+
+&lt;p&gt;When the past has never been so bright before&lt;/p&gt;
+
+&lt;p&gt;The horizon is here.&lt;/p&gt;
+
+&lt;p&gt;The horizon is here, all black in color&lt;/p&gt;
+
+&lt;p&gt;I wish i could be as far as the horizon,from myself.&lt;/p&gt;
+
+&lt;p&gt;The waters, black sky, bloody clouds&lt;/p&gt;
+
+&lt;p&gt;I wish i had known how to swim&lt;/p&gt;
+
+&lt;p&gt;I wish i had known how to swim&lt;/p&gt;
+
+&lt;p&gt;And then not swim and drown, all alone.&lt;/p&gt;
+
+&lt;p&gt;And on this night of despair&lt;/p&gt;
+
+&lt;p&gt;I wish i could be the star that doesn’t twinkle&lt;/p&gt;
+
+&lt;p&gt;I wish i could be the star that isn’t shining tonight&lt;/p&gt;
+
+&lt;p&gt;I wish i could be the star that chose not to rise,&lt;/p&gt;
+
+&lt;p&gt;I wish i could be the star that doesn’t exist.&lt;/p&gt;
+
+&lt;p&gt;I wish.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 05 Aug 2014 20:05:05 +0530</pubDate>
+        <link>http://nidaismailshah.github.io/poetry/2014/08/05/IWish/</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/poetry/2014/08/05/IWish/</guid>
+        
+        
+        <category>poetry</category>
+        
+      </item>
     
       <item>
         <title>Trail Of Love</title>
@@ -55,13 +109,11 @@
 
 </description>
         <pubDate>Sun, 03 Aug 2014 05:26:05 +0530</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2014/08/03/welcome-to-jekyll/</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2014/08/03/welcome-to-jekyll/</guid>
+        <link>http://nidaismailshah.github.io/poetry/2014/08/03/TrailOfLove/</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/poetry/2014/08/03/TrailOfLove/</guid>
         
         
-        <category>jekyll</category>
-        
-        <category>update</category>
+        <category>poetry</category>
         
       </item>
     
