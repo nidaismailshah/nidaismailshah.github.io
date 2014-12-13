@@ -5,5 +5,5 @@ permalink: /poetry/
 ---
 
 <div class="poetry-home">
-   <p>coming soon!</p>
+   <a href="/index.html"><p>coming soon!</p></a>
 </div>
