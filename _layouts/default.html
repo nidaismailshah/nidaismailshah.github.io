@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html>
+     {% include head.html %}
 
-  {% include head.html %}
-
-    <body>
-    <div class = headerp>
-        <div class=headerc>
-             {% include header.html %}
-        </div>
-       <!-- <div class=headercn>
-             <i class="fa fa-arrow-circle-o-down"></i>   Ping
-        </div>-->
-    </div>
-
-    <div class="page-content">
-      <div class="wrap">
-      {{ content }}
+  <body>
+      <div class = headerp>
+        {% include header.html %}
       </div>
-    </div>
+      <div class="page-content">
+        <div class="wrap">
+         {{ content }}
+        </div>
+      </div>
 
     {% include footer.html %}
-
-    </body>
+  </body>
 </html>
 
 
