@@ -432,6 +432,10 @@ a:visited { color: #205caa; }
   /*background-image: linear-gradient(to bottom, #063652 0%, #0081a2 100%);*/
   background-image: url(/images/pic.png);
   background-repeat: no-repeat;
+  width: 88%;
+  margin: auto;
+  border-right: 1px solid #B5AFAF;
+  border-left: 1px solid #B5AFAF
 }
 .poetry-home p {
   text-align: center;

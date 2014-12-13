@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: poetry
 title: Poems
 permalink: /poetry/
 ---
