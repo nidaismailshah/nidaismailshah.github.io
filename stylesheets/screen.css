@@ -81,7 +81,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 15, ../sass/screen.scss */
 .post-content ul {
   list-style: square;
-  font-weight: 500;
+  font-weight: 700;
   padding-left: 3em;
 }
 /* line 20, ../sass/screen.scss */

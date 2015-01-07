@@ -5,8 +5,8 @@
     <description>Some lines , a bit elaborated</description>
     <link>http://nidaismailshah.github.io/</link>
     <atom:link href="http://nidaismailshah.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 07 Jan 2015 21:25:56 +0530</pubDate>
-    <lastBuildDate>Wed, 07 Jan 2015 21:25:56 +0530</lastBuildDate>
+    <pubDate>Wed, 07 Jan 2015 21:43:01 +0530</pubDate>
+    <lastBuildDate>Wed, 07 Jan 2015 21:43:01 +0530</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
@@ -14,8 +14,9 @@
         <description>&lt;p&gt;All the  customizations in Drupal are done using hooks.&lt;/p&gt;
 
 &lt;h1&gt;Hooks&lt;/h1&gt;
-&lt;p&gt;Hooks are Drupal’s way of giving developers a chance (by calling hooks in their custom modules) to customize Drupal Core functionality and presentation. Read more about hooks &lt;a href=&quot;https://3cwebservices.com/drupal/introduction-drupal-hooks&quot; target=&quot;-blank&quot;&gt;here&lt;/a&gt;. 
-To manage a block’s visibility, Drupal has already set a few options. These include:&lt;/p&gt;
+&lt;p&gt;Hooks are Drupal’s way of giving developers a chance (by calling hooks in their custom modules) to customize Drupal Core functionality and presentation. Read more about hooks &lt;a href=&quot;https://3cwebservices.com/drupal/introduction-drupal-hooks&quot; target=&quot;-blank&quot;&gt;here&lt;/a&gt;. &lt;/p&gt;
+
+&lt;p&gt;To manage a block’s visibility, Drupal has already set a few options. These include:&lt;/p&gt;
 &lt;ul&gt;
  &lt;li&gt;Visibility according to specific pages.&lt;/li&gt;
  &lt;li&gt;Visibility for different content types.&lt;/li&gt;

@@ -9,6 +9,7 @@ All the  customizations in Drupal are done using hooks.
 
 <h1>Hooks</h1>
 Hooks are Drupal's way of giving developers a chance (by calling hooks in their custom modules) to customize Drupal Core functionality and presentation. Read more about hooks <a href ="https://3cwebservices.com/drupal/introduction-drupal-hooks" target = "-blank">here</a>. 
+
 To manage a block's visibility, Drupal has already set a few options. These include:
 <ul>
  <li>Visibility according to specific pages.</li>
