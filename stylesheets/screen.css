@@ -69,5 +69,85 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 7, ../sass/screen.scss */
 .post-content {
-  margin-left: 10%;
+  margin-left: 15%;
+  margin-right: 20%;
+}
+/* line 10, ../sass/screen.scss */
+.post-content h1 {
+  margin: 10px 0 10px 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+/* line 15, ../sass/screen.scss */
+.post-content ul {
+  list-style: square;
+  font-weight: 500;
+  padding-left: 3em;
+}
+/* line 20, ../sass/screen.scss */
+.post-content img {
+  display: block;
+  padding: 10px;
+}
+
+/* line 25, ../sass/screen.scss */
+.post pre, .post code {
+  border: 1px solid #d5d5e9;
+  background-color: #FFF;
+  padding: 8px 12px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 800;
+  overflow: scroll;
+}
+
+/* line 36, ../sass/screen.scss */
+.hire {
+  text-align: center;
+  margin-top: 4em;
+  display: block;
+}
+/* line 40, ../sass/screen.scss */
+.hire p {
+  background: #575454;
+  display: inline-block;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 300;
+}
+/* line 48, ../sass/screen.scss */
+.hire p:hover {
+  cursor: pointer;
+  background: #179490;
+  color: #000;
+  font-weight: 400;
+}
+
+/* line 55, ../sass/screen.scss */
+.description {
+  display: block;
+  width: 80%;
+  margin: auto;
+  padding-top: 1em;
+}
+/* line 60, ../sass/screen.scss */
+.description .tags {
+  font-weight: 500;
+}
+
+/* line 64, ../sass/screen.scss */
+.pic {
+  display: block;
+  width: 10%;
+  margin: auto;
+}
+
+/* line 69, ../sass/screen.scss */
+.pic img {
+  border: 2px solid #575454;
+  border-radius: 80px;
+  padding: 5px;
 }
