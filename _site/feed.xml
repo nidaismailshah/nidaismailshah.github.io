@@ -5,8 +5,8 @@
     <description>Some lines , a bit elaborated</description>
     <link>http://nidaismailshah.github.io/</link>
     <atom:link href="http://nidaismailshah.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 07 Jan 2015 21:18:28 +0530</pubDate>
-    <lastBuildDate>Wed, 07 Jan 2015 21:18:28 +0530</lastBuildDate>
+    <pubDate>Wed, 07 Jan 2015 21:25:56 +0530</pubDate>
+    <lastBuildDate>Wed, 07 Jan 2015 21:25:56 +0530</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
@@ -120,7 +120,7 @@ The code for this would look somewhat like this:&lt;/p&gt;
   	&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I’ll soon be writing another blogpost to explain how to manage the block restrict a block’s visibility on a certain page. Stay tuned!&lt;/p&gt;
+&lt;p&gt;I’ll soon be writing another blogpost to explain how to restrict a block’s visibility on a certain page. Stay tuned!&lt;/p&gt;
 </description>
         <pubDate>Mon, 05 Jan 2015 20:05:05 +0530</pubDate>
         <link>http://nidaismailshah.github.io/drupal/2015/01/05/drupalblockvisibility/</link>

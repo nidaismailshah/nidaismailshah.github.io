@@ -116,4 +116,4 @@ The code for this would look somewhat like this:
 }
 {% endhighlight %}
 
-I'll soon be writing another blogpost to explain how to manage the block restrict a block's visibility on a certain page. Stay tuned!
+I'll soon be writing another blogpost to explain how to restrict a block's visibility on a certain page. Stay tuned!
