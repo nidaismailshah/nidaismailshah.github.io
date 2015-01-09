@@ -2,7 +2,8 @@
 layout: post
 title:  "Trail Of Love"
 date:   2014-08-02 23:56:05
-categories: poetry
+categories:  "poetry"
+tag: 2
 ---
 Could I not go where the wind took me,
 

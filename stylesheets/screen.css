@@ -67,30 +67,31 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 7, ../sass/screen.scss */
+/* line 1, ../sass/components/_global.scss */
 .post-content {
   margin-left: 15%;
   margin-right: 20%;
+  margin-bottom: 15px;
 }
-/* line 10, ../sass/screen.scss */
+/* line 5, ../sass/components/_global.scss */
 .post-content h1 {
   margin: 10px 0 10px 0;
   font-size: 30px;
   font-weight: bold;
 }
-/* line 15, ../sass/screen.scss */
+/* line 10, ../sass/components/_global.scss */
 .post-content ul {
   list-style: square;
-  font-weight: 700;
+  font-weight: 500;
   padding-left: 3em;
 }
-/* line 20, ../sass/screen.scss */
+/* line 15, ../sass/components/_global.scss */
 .post-content img {
   display: block;
   padding: 10px;
 }
 
-/* line 25, ../sass/screen.scss */
+/* line 20, ../sass/components/_global.scss */
 .post pre, .post code {
   border: 1px solid #d5d5e9;
   background-color: #FFF;
@@ -99,17 +100,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -moz-border-radius: 3px;
   border-radius: 3px;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600;
   overflow: scroll;
 }
 
-/* line 36, ../sass/screen.scss */
+/* line 31, ../sass/components/_global.scss */
 .hire {
   text-align: center;
   margin-top: 4em;
   display: block;
 }
-/* line 40, ../sass/screen.scss */
+/* line 35, ../sass/components/_global.scss */
 .hire p {
   background: #575454;
   display: inline-block;
@@ -118,7 +119,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-radius: 5px;
   font-weight: 300;
 }
-/* line 48, ../sass/screen.scss */
+/* line 43, ../sass/components/_global.scss */
 .hire p:hover {
   cursor: pointer;
   background: #179490;
@@ -126,28 +127,47 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-weight: 400;
 }
 
-/* line 55, ../sass/screen.scss */
+/* line 50, ../sass/components/_global.scss */
 .description {
   display: block;
   width: 80%;
   margin: auto;
   padding-top: 1em;
 }
-/* line 60, ../sass/screen.scss */
+/* line 55, ../sass/components/_global.scss */
 .description .tags {
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* line 64, ../sass/screen.scss */
+/* line 59, ../sass/components/_global.scss */
 .pic {
   display: block;
-  width: 10%;
+  width: 100px;
   margin: auto;
 }
 
-/* line 69, ../sass/screen.scss */
+/* line 64, ../sass/components/_global.scss */
 .pic img {
   border: 2px solid #575454;
   border-radius: 80px;
   padding: 5px;
+}
+
+/* line 69, ../sass/components/_global.scss */
+.tech-posts {
+  display: inline-block;
+  width: 52%;
+  float: left;
+}
+
+/* line 74, ../sass/components/_global.scss */
+.poetry-posts {
+  display: inline-block;
+  width: 45%;
+  border-left: 1px solid;
+}
+
+/* line 79, ../sass/components/_global.scss */
+.highlight {
+  margin: 15px;
 }

@@ -3,6 +3,7 @@ layout: post
 title:  "Managing Block Visibility in Drupal."
 date:   2015-01-05 14:35:05
 categories: drupal
+tag: 1
 ---
 
 All the  customizations in Drupal are done using hooks.
@@ -27,7 +28,8 @@ We can find these options in the add-block form when we add a new block or edit 
  * @see block_admin_configure()
  */
 function node_form_block_admin_configure_alter(&$form, &$form_state) {
-  $default_type_options = db_query("SELECT type FROM {block_node_type} WHERE module = :module AND delta = :delta", array(
+  $default_type_options = db_query("SELECT type FROM {block_node_type} WHERE 
+  module = :module AND delta = :delta", array(
     ':module' => $form['module']['#value'],
     ':delta' => $form['delta']['#value'],
   ))->fetchCol();
@@ -44,12 +46,13 @@ function node_form_block_admin_configure_alter(&$form, &$form_state) {
     '#title' => t('Show block for specific content types'),
     '#default_value' => $default_type_options,
     '#options' => node_type_get_names(),
-    '#description' => t('Show this block only on pages that display content of the given type(s). If you select no types, there will be no type-specific limitation.'),
+    '#description' => t('Show this block only on pages that display content of the 
+    given type(s). If you select no types, there will be no type-specific limitation.'),
   );
   $form['#submit'][] = 'node_form_block_admin_configure_submit';
 }
 {% endhighlight %}
-hook_form_FORM_ID_alter() has been implemented in the above code which sets the various visibility settings for the add-block-form. The vertical tabs are represented by form elements which are fieldsets like: 
+```hook_form_FORM_ID_alter()``` has been implemented in the above code which sets the various visibility settings for the add-block-form. The vertical tabs are represented by form elements which are fieldsets like: 
 {% highlight ruby %}
  $form['visibility']['node-type']
 {% endhighlight %}

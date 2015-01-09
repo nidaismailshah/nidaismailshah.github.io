@@ -74,6 +74,10 @@
     <h1>Managing Block Visibility in Drupal.</h1>
     <p class="meta">Jan 5, 2015</p>
   </header>
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+	<div class="share">
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54af39a75709d235" async="async"></script>
+	</div>
 
   <article class="post-content">
   <p>All the  customizations in Drupal are done using hooks.</p>
@@ -98,7 +102,8 @@
 <span class="sr"> * @see block_admin_configure()</span>
 <span class="sr"> */</span>
 <span class="n">function</span> <span class="n">node_form_block_admin_configure_alter</span><span class="p">(</span><span class="o">&amp;</span><span class="vg">$form</span><span class="p">,</span> <span class="o">&amp;</span><span class="vg">$form_state</span><span class="p">)</span> <span class="p">{</span>
-  <span class="vg">$default_type_options</span> <span class="o">=</span> <span class="n">db_query</span><span class="p">(</span><span class="s2">&quot;SELECT type FROM {block_node_type} WHERE module = :module AND delta = :delta&quot;</span><span class="p">,</span> <span class="n">array</span><span class="p">(</span>
+  <span class="vg">$default_type_options</span> <span class="o">=</span> <span class="n">db_query</span><span class="p">(</span><span class="s2">&quot;SELECT type FROM {block_node_type} WHERE </span>
+<span class="s2">  module = :module AND delta = :delta&quot;</span><span class="p">,</span> <span class="n">array</span><span class="p">(</span>
     <span class="s1">&#39;:module&#39;</span> <span class="o">=&gt;</span> <span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;module&#39;</span><span class="o">][</span><span class="s1">&#39;#value&#39;</span><span class="o">]</span><span class="p">,</span>
     <span class="s1">&#39;:delta&#39;</span> <span class="o">=&gt;</span> <span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;delta&#39;</span><span class="o">][</span><span class="s1">&#39;#value&#39;</span><span class="o">]</span><span class="p">,</span>
   <span class="p">))</span><span class="o">-&gt;</span><span class="n">fetchCol</span><span class="p">();</span>
@@ -115,12 +120,13 @@
     <span class="s1">&#39;#title&#39;</span> <span class="o">=&gt;</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;Show block for specific content types&#39;</span><span class="p">),</span>
     <span class="s1">&#39;#default_value&#39;</span> <span class="o">=&gt;</span> <span class="vg">$default_type_options</span><span class="p">,</span>
     <span class="s1">&#39;#options&#39;</span> <span class="o">=&gt;</span> <span class="n">node_type_get_names</span><span class="p">(),</span>
-    <span class="s1">&#39;#description&#39;</span> <span class="o">=&gt;</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;Show this block only on pages that display content of the given type(s). If you select no types, there will be no type-specific limitation.&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;#description&#39;</span> <span class="o">=&gt;</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;Show this block only on pages that display content of the </span>
+<span class="s1">    given type(s). If you select no types, there will be no type-specific limitation.&#39;</span><span class="p">),</span>
   <span class="p">);</span>
   <span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;#submit&#39;</span><span class="o">][]</span> <span class="o">=</span> <span class="s1">&#39;node_form_block_admin_configure_submit&#39;</span><span class="p">;</span>
 <span class="p">}</span></code></pre></div>
 
-<p>hook_form_FORM_ID_alter() has been implemented in the above code which sets the various visibility settings for the add-block-form. The vertical tabs are represented by form elements which are fieldsets like: </p>
+<p><code>hook_form_FORM_ID_alter()</code> has been implemented in the above code which sets the various visibility settings for the add-block-form. The vertical tabs are represented by form elements which are fieldsets like: </p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;visibility&#39;</span><span class="o">][</span><span class="s1">&#39;node-type&#39;</span><span class="o">]</span></code></pre></div>
 
