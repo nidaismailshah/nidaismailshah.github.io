@@ -1,7 +1,21 @@
 .post-content {
-	margin-left: 15%;
-	margin-right: 20%;
-	margin-bottom: 15px;
+	margin: 15px 15% 15px 15%;
+	text-align: justify;
+	line-height: 1.6;
+		a {
+			font-weight: 500;
+		}
+		a:hover{
+			text-decoration: underline;
+			color: #000;
+			-webkit-transition: color 1s;
+			transition: color 1s;
+		}
+		p {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+  
 	h1 {
 		margin: 10px 0 10px 0;
 		font-size: 30px;
@@ -47,6 +61,14 @@
 	  font-weight: 400;
 	}
 }
+.about p {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.about{
+  max-width: 100%;
+  margin: auto;
+}
 .description {
   display: block;
   width: 80%;
@@ -66,16 +88,7 @@
       border-radius: 80px;
       padding: 5px;
 }
-.tech-posts {
-	display: inline-block;
-	width: 52%;
-	float: left;
-}
-.poetry-posts {
-	display: inline-block;
-	width: 45%;
-	border-left: 1px solid;
-}
 .highlight {
-	margin: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }

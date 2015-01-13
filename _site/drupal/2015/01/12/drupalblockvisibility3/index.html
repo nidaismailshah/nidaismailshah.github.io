@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Managing Block Visibility in Drupal - 3.</title>
+    <meta name="keywords" content="Nida, Nida Shah, Nida Ismail Shah, Back-End, Developer, Kashmir">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="Nida Ismail Shah" />
+    <meta property="og:type" content="Back-End Developer" />
+    <meta property="og:image" content="http://nidashah.com/images/nida.jpg" />
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Some lines , a bit elaborated">
+    <link rel="canonical" href="http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility3/">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <!--[if IE]>
+      <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+</head>
+
+
+    <body>
+        <div class = headerb>
+           <header class="site-header">
+
+  <div class="wrap">
+
+    <a class="site-title" href="/">Nida Ismail Shah</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 18 15" enable-background="new 0 0 18 15" xml:space="preserve">
+          <path fill="#505050" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0
+            h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#505050" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484
+            h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#505050" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0
+            c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
+       <a href="/index.html" class="page-link">Home</a>
+        
+          <a class="page-link" href="/about/">About</a>
+        
+          <a class="page-link" href="/blog/">Blog</a>
+        
+          
+        
+          
+        
+          <a class="page-link" href="/poetry/">Poems</a>
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+        </div>
+        <div class="page-contenth">
+          <div class="wrap">
+          <div class="post">
+
+  <header class="post-header">
+    <h1>Managing Block Visibility in Drupal - 3.</h1>
+    <p class="meta">Jan 12, 2015</p>
+  </header>
+
+  <article class="post-content">
+  <p>Allowing or restricting the blocks’ visibility using <code>hook_block_list_alter($blocks)</code>.</p>
+
+<p>This hook is implemented by all modules that need to alter the list of blocks to b rendered. The block list contains the block definitions and not the rendered blocks. So we can very well add or remove a block or even alter its contents as per our needs. Read more about this hook <a href="https://api.drupal.org/api/drupal/modules!block!block.api.php/function/hook_block_list_alter/7"> here</a>.This hook takes as input an array of blocks <code>$blocks[]</code> with block ids of blocks as keys.</p>
+
+<p>Now to determine the block’s visibility we have to keep or remove a particular block from this block list or this array of $blocks. If we want a block to be visible, we keep it in the list otherwise we remove it off the list and we do that by deleting the element in the $blocks array corresponding to that block. We can simply use php <code>unset()</code> function to perform the job like this: </p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">unset</span><span class="p">(</span><span class="vg">$blocks</span><span class="o">[</span><span class="vg">$key</span><span class="o">]</span><span class="p">);</span></code></pre></div>
+
+<p>where $key holds the block id of the block whose visibility is to be restricted.
+The code would look somewhat like this:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="n">my_module_block_list_alter</span><span class="p">(</span><span class="o">&amp;</span><span class="vg">$blocks</span><span class="p">)</span> <span class="p">{</span>
+	<span class="sr">//</span><span class="c1"># traverse through the $blocks array</span>
+	<span class="n">foreach</span> <span class="p">(</span><span class="vg">$blocks</span> <span class="n">as</span> <span class="vg">$key</span> <span class="o">=&gt;</span> <span class="vg">$block</span><span class="p">)</span> <span class="p">{</span>
+		<span class="sr">//</span><span class="c1"># check for the visibility</span>
+    	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visibility_check</span><span class="p">(</span><span class="vg">$some_parameter</span><span class="p">)){</span>
+    			<span class="sr">//</span><span class="c1"># delete the block off the list/array</span>
+               <span class="n">unset</span><span class="p">(</span><span class="vg">$blocks</span><span class="o">[</span><span class="vg">$key</span><span class="o">]</span><span class="p">);</span>
+               <span class="n">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Now to restrict a blocks visibility on the basis of date of creation of a node we would need to compare the two dates, one from the custom table <code>block_date</code> and one from the node object <code>$node-&gt;created</code>. To do this job, we would need to query the custom table <code>block_date</code> in our database, retrieve the restriction date <code>$res_date</code> and then use some function to compare this date with the <code>node-&gt;created</code> date obtained from the node object. The query that would retrieve the date of restriction from <code>block_date</code> table would look somewhat like this:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span> <span class="c1">#array to store block visibility date</span>
+  <span class="vg">$block_date_start</span> <span class="o">=</span> <span class="n">array</span><span class="p">();</span>
+  <span class="vg">$result</span> <span class="o">=</span> <span class="n">db_query</span><span class="p">(</span><span class="s1">&#39;SELECT module, delta, start, res_date FROM {block_date}&#39;</span><span class="p">);</span>
+  <span class="n">foreach</span> <span class="p">(</span><span class="vg">$result</span> <span class="n">as</span> <span class="vg">$record</span><span class="p">){</span>
+    <span class="vg">$block_date_start</span><span class="o">[</span><span class="vg">$record</span><span class="o">-&gt;</span><span class="n">module</span><span class="o">][</span><span class="vg">$record</span><span class="o">-&gt;</span><span class="n">delta</span><span class="o">][</span><span class="s1">&#39;start&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="vg">$record</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">;</span>
+    <span class="vg">$block_date_start</span><span class="o">[</span><span class="vg">$record</span><span class="o">-&gt;</span><span class="n">module</span><span class="o">][</span><span class="vg">$record</span><span class="o">-&gt;</span><span class="n">delta</span><span class="o">][</span><span class="s1">&#39;res_date&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="vg">$record</span><span class="o">-&gt;</span><span class="n">res_date</span><span class="p">;</span>
+  <span class="p">}</span></code></pre></div>
+
+<p>and this shows how to retrieve the unix timestamp date of node creation from node object and format it as per our use:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vg">$node_created</span> <span class="o">=</span> <span class="n">format_date</span><span class="p">(</span><span class="vg">$node</span><span class="o">-&gt;</span><span class="n">created</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="s1">&#39;m/d/Y&#39;</span><span class="p">);</span></code></pre></div>
+
+<p>So now we have the two dates available to us and we need to compare the two dates to determine whether the block would be visible on a particular node or not. The final code in the <code>hook_block_list_alter</code> would look like this:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">function</span> <span class="n">my_module_block_list_alter</span><span class="p">(</span><span class="o">&amp;</span><span class="vg">$blocks</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">global</span> <span class="vg">$theme_key</span><span class="p">;</span>
+
+  <span class="sr">//</span><span class="c1">#array to store block visibility date</span>
+  <span class="vg">$block_date_start</span> <span class="o">=</span> <span class="n">array</span><span class="p">();</span>
+  <span class="vg">$result</span> <span class="o">=</span> <span class="n">db_query</span><span class="p">(</span><span class="s1">&#39;SELECT module, delta, start, res_date FROM {block_date}&#39;</span><span class="p">);</span>
+  <span class="n">foreach</span> <span class="p">(</span><span class="vg">$result</span> <span class="n">as</span> <span class="vg">$record</span><span class="p">){</span>
+    <span class="vg">$block_date_start</span><span class="o">[</span><span class="vg">$record</span><span class="o">-&gt;</span><span class="n">module</span><span class="o">][</span><span class="vg">$record</span><span class="o">-&gt;</span><span class="n">delta</span><span class="o">][</span><span class="s1">&#39;start&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="vg">$record</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">;</span>
+    <span class="vg">$block_date_start</span><span class="o">[</span><span class="vg">$record</span><span class="o">-&gt;</span><span class="n">module</span><span class="o">][</span><span class="vg">$record</span><span class="o">-&gt;</span><span class="n">delta</span><span class="o">][</span><span class="s1">&#39;res_date&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="vg">$record</span><span class="o">-&gt;</span><span class="n">res_date</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="vg">$node</span> <span class="o">=</span> <span class="n">menu_get_object</span><span class="p">();</span>
+
+  <span class="n">foreach</span> <span class="p">(</span><span class="vg">$blocks</span> <span class="n">as</span> <span class="vg">$key</span> <span class="o">=&gt;</span> <span class="vg">$block</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">isset</span><span class="p">(</span><span class="vg">$block_date_start</span><span class="o">[</span><span class="vg">$block</span><span class="o">-&gt;</span><span class="n">module</span><span class="o">][</span><span class="vg">$block</span><span class="o">-&gt;</span><span class="n">delta</span><span class="o">]</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">(</span><span class="vg">$node</span><span class="p">))</span> <span class="p">{</span>
+          <span class="vg">$node_created</span> <span class="o">=</span> <span class="n">format_date</span><span class="p">(</span><span class="vg">$node</span><span class="o">-&gt;</span><span class="n">created</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="s1">&#39;m/d/Y&#39;</span><span class="p">);</span>
+          <span class="vg">$start</span> <span class="o">=</span> <span class="vg">$block_date_start</span><span class="o">[</span><span class="vg">$block</span><span class="o">-&gt;</span><span class="n">module</span><span class="o">][</span><span class="vg">$block</span><span class="o">-&gt;</span><span class="n">delta</span><span class="o">][</span><span class="s1">&#39;start&#39;</span><span class="o">]</span><span class="p">;</span>
+          <span class="vg">$res_date</span> <span class="o">=</span> <span class="vg">$block_date_start</span><span class="o">[</span><span class="vg">$block</span><span class="o">-&gt;</span><span class="n">module</span><span class="o">][</span><span class="vg">$block</span><span class="o">-&gt;</span><span class="n">delta</span><span class="o">][</span><span class="s1">&#39;res_date&#39;</span><span class="o">]</span><span class="p">;</span>
+
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visibility_check</span><span class="p">(</span><span class="vg">$node_created</span><span class="p">,</span> <span class="vg">$start</span><span class="p">,</span> <span class="vg">$res_date</span><span class="p">)){</span>
+               <span class="n">unset</span><span class="p">(</span><span class="vg">$blocks</span><span class="o">[</span><span class="vg">$key</span><span class="o">]</span><span class="p">);</span>
+               <span class="n">continue</span><span class="p">;</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Including this hook in our <code>my_module.module</code> file would certainly add the functionality to our drupal site where in users/site administrators would be able to decide whether a block would be visible on a node before or after a certain date or not. The function <code>visibility_check()</code> is a simple php date comparison function and has nothing to do with drupal blocks. This is something we can manage to code easily.</p>
+
+<p>However there are some more things that need to be taken care of before we are finally done with adding this funcionality to our drupal site. Those things would be covered in another blog post.</p>
+
+<p>Stay tuned!</p>
+
+  </article>
+
+</div>
+          </div>
+        </div>
+      
+    </body>
+</html>

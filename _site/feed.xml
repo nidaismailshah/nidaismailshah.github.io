@@ -5,12 +5,194 @@
     <description>Some lines , a bit elaborated</description>
     <link>http://nidaismailshah.github.io/</link>
     <atom:link href="http://nidaismailshah.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 09 Jan 2015 14:29:43 +0530</pubDate>
-    <lastBuildDate>Fri, 09 Jan 2015 14:29:43 +0530</lastBuildDate>
+    <pubDate>Tue, 13 Jan 2015 12:27:50 +0530</pubDate>
+    <lastBuildDate>Tue, 13 Jan 2015 12:27:50 +0530</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
-        <title>Managing Block Visibility in Drupal.</title>
+        <title>Managing Block Visibility in Drupal - 3.</title>
+        <description>&lt;p&gt;Allowing or restricting the blocks’ visibility using &lt;code&gt;hook_block_list_alter($blocks)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This hook is implemented by all modules that need to alter the list of blocks to b rendered. The block list contains the block definitions and not the rendered blocks. So we can very well add or remove a block or even alter its contents as per our needs. Read more about this hook &lt;a href=&quot;https://api.drupal.org/api/drupal/modules!block!block.api.php/function/hook_block_list_alter/7&quot;&gt; here&lt;/a&gt;.This hook takes as input an array of blocks &lt;code&gt;$blocks[]&lt;/code&gt; with block ids of blocks as keys.&lt;/p&gt;
+
+&lt;p&gt;Now to determine the block’s visibility we have to keep or remove a particular block from this block list or this array of $blocks. If we want a block to be visible, we keep it in the list otherwise we remove it off the list and we do that by deleting the element in the $blocks array corresponding to that block. We can simply use php &lt;code&gt;unset()&lt;/code&gt; function to perform the job like this: &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$blocks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;where $key holds the block id of the block whose visibility is to be restricted.
+The code would look somewhat like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_module_block_list_alter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$blocks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# traverse through the $blocks array&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$blocks&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# check for the visibility&lt;/span&gt;
+    	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visibility_check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$some_parameter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)){&lt;/span&gt;
+    			&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# delete the block off the list/array&lt;/span&gt;
+               &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$blocks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+               &lt;span class=&quot;n&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now to restrict a blocks visibility on the basis of date of creation of a node we would need to compare the two dates, one from the custom table &lt;code&gt;block_date&lt;/code&gt; and one from the node object &lt;code&gt;$node-&amp;gt;created&lt;/code&gt;. To do this job, we would need to query the custom table &lt;code&gt;block_date&lt;/code&gt; in our database, retrieve the restriction date &lt;code&gt;$res_date&lt;/code&gt; and then use some function to compare this date with the &lt;code&gt;node-&amp;gt;created&lt;/code&gt; date obtained from the node object. The query that would retrieve the date of restriction from &lt;code&gt;block_date&lt;/code&gt; table would look somewhat like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#array to store block visibility date&lt;/span&gt;
+  &lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;vg&quot;&gt;$result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;SELECT module, delta, start, res_date FROM {block_date}&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$result&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;res_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;res_date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and this shows how to retrieve the unix timestamp date of node creation from node object and format it as per our use:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;vg&quot;&gt;$node_created&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format_date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;custom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;m/d/Y&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So now we have the two dates available to us and we need to compare the two dates to determine whether the block would be visible on a particular node or not. The final code in the &lt;code&gt;hook_block_list_alter&lt;/code&gt; would look like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_module_block_list_alter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$blocks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$theme_key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#array to store block visibility date&lt;/span&gt;
+  &lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;vg&quot;&gt;$result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;SELECT module, delta, start, res_date FROM {block_date}&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$result&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;res_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;res_date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;vg&quot;&gt;$node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menu_get_object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$blocks&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$block&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$block&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;vg&quot;&gt;$node_created&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format_date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;custom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;m/d/Y&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+          &lt;span class=&quot;vg&quot;&gt;$start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$block&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$block&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+          &lt;span class=&quot;vg&quot;&gt;$res_date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$block_date_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$block&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$block&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;res_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visibility_check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$node_created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$res_date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)){&lt;/span&gt;
+               &lt;span class=&quot;n&quot;&gt;unset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$blocks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+               &lt;span class=&quot;n&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Including this hook in our &lt;code&gt;my_module.module&lt;/code&gt; file would certainly add the functionality to our drupal site where in users/site administrators would be able to decide whether a block would be visible on a node before or after a certain date or not. The function &lt;code&gt;visibility_check()&lt;/code&gt; is a simple php date comparison function and has nothing to do with drupal blocks. This is something we can manage to code easily.&lt;/p&gt;
+
+&lt;p&gt;However there are some more things that need to be taken care of before we are finally done with adding this funcionality to our drupal site. Those things would be covered in another blog post.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 12 Jan 2015 23:30:00 +0530</pubDate>
+        <link>http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility3/</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility3/</guid>
+        
+        <category>1</category>
+        
+        
+        <category>drupal</category>
+        
+      </item>
+    
+      <item>
+        <title>Managing Block Visibility in Drupal - 2.</title>
+        <description>&lt;p&gt;Create a custom table and define various fields in it using &lt;code&gt;hook_schema()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This blog post is in continuation with the previous &lt;a href=&quot;/drupal/2015/01/05/drupalblockvisibility1/&quot;&gt;blog post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To manage blocks’ visibility we need to have parameters that would determine whether a block would be visible or not.
+The parameters that we need to set when we create or edit a block are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Pages&lt;/em&gt; : to restrict blocks&#39; visibility on certain pages.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Content Types&lt;/em&gt; : to restrict blocks&#39; visibility on certain content types.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Roles&lt;/em&gt; : to restrict blocks&#39; visibility for certain user roles.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Users&lt;/em&gt; : to allow per user customizations for blocks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These parameters are available out of the box in any drupal site. To create custom parameters refer to this &lt;a href=&quot;/drupal/2015/01/05/drupalblockvisibility1/&quot;&gt;blog post&lt;/a&gt;.
+We need to save these parameters/configurations into the database in a custom table. To create a custom table we can use &lt;code&gt;hook_schema()&lt;/code&gt;. &lt;code&gt;hook_schema()&lt;/code&gt; takes care of the table creation and deletion at the time of module installation and un-install respectively. In the following code, I’ve created a custom table named &lt;code&gt;block_date&lt;/code&gt; inside the &lt;code&gt;hook_schema()&lt;/code&gt; in the my_module.install file. Read more about hook_schema() &lt;a href=&quot;https://api.drupal.org/api/function/hook_schema&quot;&gt;here&lt;/a&gt; and .install files &lt;a href=&quot;https://www.drupal.org/node/876250&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sr&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sr&quot;&gt; * Implements hook_schema().&lt;/span&gt;
+&lt;span class=&quot;sr&quot;&gt; */&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;my_module_schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;vg&quot;&gt;$schema&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;block_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&amp;#39;description&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Sets up display criteria for blocks based on post date&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&amp;#39;fields&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;&amp;#39;module&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;type&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;varchar&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;length&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;not null&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;description&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;The block&amp;#39;s origin module, from {block}.module.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;&amp;#39;delta&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;type&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;varchar&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;length&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;not null&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;description&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;The block&amp;#39;s unique delta within module, from {block}.delta.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;&amp;#39;res_date&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;type&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;varchar&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;length&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;not null&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;description&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;The date this block&amp;#39;s visibility should be restricted according to.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;type&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;varchar&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;length&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;description&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Visibility before or after&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;&amp;#39;primary key&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;delta&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here &lt;code&gt;&#39;fields&#39;&lt;/code&gt; is an array of fields. So the table &lt;code&gt;block_date&lt;/code&gt; would be created when we install our module and it would have the above defined fields.
+So we have our custom table created and data would be queried into it when a block is edited or a new block is created. The code for the database query would look like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;vg&quot;&gt;$query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db_insert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;block_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;res_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;delta&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;vg&quot;&gt;$query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;&amp;#39;res_date&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$form_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;values&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;res_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$form_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;values&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;&amp;#39;module&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$form_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;values&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;&amp;#39;delta&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$form_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;values&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;delta&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;vg&quot;&gt;$query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is to be put inside the submit handler of the form we altered using &lt;code&gt;hook_form_FORM_ID_alter()&lt;/code&gt; in the previous blog post so that the query runs when the form is submitted after some validations, of course.&lt;/p&gt;
+
+&lt;p&gt;Duh! We have a problem there, Know what?&lt;/p&gt;
+
+&lt;p&gt;If we edit a block whose visibility parameters are already set, and we happen to change the parameters and submit the form again, we would be querying into the database two different parameters of visibility for the same block. And that, sure as hell, is a problem.&lt;/p&gt;
+
+&lt;p&gt;To avoid this we would need to delete the previously set parameters for that block from the database. To do that we use the following query before inserting new data into the database in the submit handler of the &lt;code&gt;block_admin_configure&lt;/code&gt; form.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#delete already set date configurations&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;db_delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;block_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$form_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;values&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;delta&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$form_state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;values&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;delta&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So now we have a block created or edited and the parameters collected from it and stored into a custom table in our database. Now we need to use these parameters to determine blocks’ visibility. I would be writing another blog post to explain how to use these parameters to manage a block’s visibility.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 12 Jan 2015 19:30:00 +0530</pubDate>
+        <link>http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility2/</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility2/</guid>
+        
+        <category>1</category>
+        
+        
+        <category>drupal</category>
+        
+      </item>
+    
+      <item>
+        <title>Managing Block Visibility in Drupal - 1.</title>
         <description>&lt;p&gt;All the  customizations in Drupal are done using hooks.&lt;/p&gt;
 
 &lt;h1&gt;Hooks&lt;/h1&gt;
@@ -126,8 +308,8 @@ The code for this would look somewhat like this:&lt;/p&gt;
 &lt;p&gt;I’ll soon be writing another blogpost to explain how to restrict a block’s visibility on a certain page. Stay tuned!&lt;/p&gt;
 </description>
         <pubDate>Mon, 05 Jan 2015 20:05:05 +0530</pubDate>
-        <link>http://nidaismailshah.github.io/drupal/2015/01/05/drupalblockvisibility/</link>
-        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/2015/01/05/drupalblockvisibility/</guid>
+        <link>http://nidaismailshah.github.io/drupal/2015/01/05/drupalblockvisibility1/</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/2015/01/05/drupalblockvisibility1/</guid>
         
         <category>1</category>
         

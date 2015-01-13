@@ -69,29 +69,45 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 1, ../sass/components/_global.scss */
 .post-content {
-  margin-left: 15%;
-  margin-right: 20%;
-  margin-bottom: 15px;
+  margin: 15px 15% 15px 15%;
+  text-align: justify;
+  line-height: 1.6;
 }
 /* line 5, ../sass/components/_global.scss */
+.post-content a {
+  font-weight: 500;
+}
+/* line 8, ../sass/components/_global.scss */
+.post-content a:hover {
+  text-decoration: underline;
+  color: #000;
+  -webkit-transition: color 1s;
+  transition: color 1s;
+}
+/* line 14, ../sass/components/_global.scss */
+.post-content p {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* line 19, ../sass/components/_global.scss */
 .post-content h1 {
   margin: 10px 0 10px 0;
   font-size: 30px;
   font-weight: bold;
 }
-/* line 10, ../sass/components/_global.scss */
+/* line 24, ../sass/components/_global.scss */
 .post-content ul {
   list-style: square;
   font-weight: 500;
   padding-left: 3em;
 }
-/* line 15, ../sass/components/_global.scss */
+/* line 29, ../sass/components/_global.scss */
 .post-content img {
   display: block;
   padding: 10px;
 }
 
-/* line 20, ../sass/components/_global.scss */
+/* line 34, ../sass/components/_global.scss */
 .post pre, .post code {
   border: 1px solid #d5d5e9;
   background-color: #FFF;
@@ -104,13 +120,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   overflow: scroll;
 }
 
-/* line 31, ../sass/components/_global.scss */
+/* line 45, ../sass/components/_global.scss */
 .hire {
   text-align: center;
   margin-top: 4em;
   display: block;
 }
-/* line 35, ../sass/components/_global.scss */
+/* line 49, ../sass/components/_global.scss */
 .hire p {
   background: #575454;
   display: inline-block;
@@ -119,7 +135,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-radius: 5px;
   font-weight: 300;
 }
-/* line 43, ../sass/components/_global.scss */
+/* line 57, ../sass/components/_global.scss */
 .hire p:hover {
   cursor: pointer;
   background: #179490;
@@ -127,47 +143,46 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-weight: 400;
 }
 
-/* line 50, ../sass/components/_global.scss */
+/* line 64, ../sass/components/_global.scss */
+.about p {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* line 68, ../sass/components/_global.scss */
+.about {
+  max-width: 100%;
+  margin: auto;
+}
+
+/* line 72, ../sass/components/_global.scss */
 .description {
   display: block;
   width: 80%;
   margin: auto;
   padding-top: 1em;
 }
-/* line 55, ../sass/components/_global.scss */
+/* line 77, ../sass/components/_global.scss */
 .description .tags {
   font-weight: 600;
 }
 
-/* line 59, ../sass/components/_global.scss */
+/* line 81, ../sass/components/_global.scss */
 .pic {
   display: block;
   width: 100px;
   margin: auto;
 }
 
-/* line 64, ../sass/components/_global.scss */
+/* line 86, ../sass/components/_global.scss */
 .pic img {
   border: 2px solid #575454;
   border-radius: 80px;
   padding: 5px;
 }
 
-/* line 69, ../sass/components/_global.scss */
-.tech-posts {
-  display: inline-block;
-  width: 52%;
-  float: left;
-}
-
-/* line 74, ../sass/components/_global.scss */
-.poetry-posts {
-  display: inline-block;
-  width: 45%;
-  border-left: 1px solid;
-}
-
-/* line 79, ../sass/components/_global.scss */
+/* line 91, ../sass/components/_global.scss */
 .highlight {
-  margin: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

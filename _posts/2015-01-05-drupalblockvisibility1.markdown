@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Managing Block Visibility in Drupal."
+title:  "Managing Block Visibility in Drupal - 1."
 date:   2015-01-05 14:35:05
 categories: drupal
 tag: 1
 ---
-
 All the  customizations in Drupal are done using hooks.
 
 <h1>Hooks</h1>
