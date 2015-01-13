@@ -186,3 +186,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+/* line 95, ../sass/components/_global.scss */
+.posts li {
+  padding-bottom: 1em;
+  border-bottom: 1px solid #cecece;
+}

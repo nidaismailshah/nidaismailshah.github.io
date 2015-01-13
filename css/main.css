@@ -32,9 +32,6 @@ a:visited { color: #205caa; }
 .wrap:after { content:""; display:table; }
 .wrap:after { clear: both; }
 
-.site-header .wrap{
-  padding: 0 7%;
-}
 .site-footer .wrap {
   max-width: 1024px;
   padding: 0 30px;
