@@ -59,9 +59,9 @@ a:visited { color: #205caa; }
   text-decoration: none;
   display: block;
   color: #fff;
-  font-size: 26px;
+  font-size: 28px;
   font-weight:900;
-  letter-spacing: -1px;
+  letter-spacing: 0px;
   float: left;
   line-height: 56px;
   position: relative;
@@ -174,10 +174,6 @@ a:visited { color: #205caa; }
 
 /* Post styles */
 /* ----------------------------------------------------------*/
-
-.post-header { 
-   margin: 10px 0 30px;
-   text-align: center; }
 
 .post-header h1 ,.post-headerh h1{
   font-size: 42px;
@@ -436,12 +432,11 @@ a:visited { color: #205caa; }
 .headerp .site-nav{
   display: inline-block;
   float: right;
-  font-weight: 900;
-  font-size: 17px;
 }
 .headerp .site-nav .page-link{
   margin-left:10px;
   display: inline-block;
+  font-weight: 600;
 }
 .headerp .site-nav .page-link:hover{
   font-size: 20px;
@@ -450,23 +445,20 @@ a:visited { color: #205caa; }
   height: 100%;
 }
 .headerb{
-  float: left;
   width: 100%;
   height: 10%;
 }
 .headerb .site-title{
-display: none;
+  color: #575454;
+  font-weight: 500;
 }
 .headerb .site-nav{
+  float: right;
   display: inline-block;
-  text-align: center;
 }
 .headerb .site-nav .page-link{
   margin-left:10px;
   display: inline-block;
   color: #575454 ;
-  font-weight: 300;
+  font-weight: 500;
   }
-.headerb .site-header{
-  background-color: #fff;
-}

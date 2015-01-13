@@ -192,3 +192,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding-bottom: 1em;
   border-bottom: 1px solid #cecece;
 }
+
+/* line 99, ../sass/components/_global.scss */
+.site-header .wrap {
+  max-width: 980px;
+  margin: auto;
+}
+
+/* line 103, ../sass/components/_global.scss */
+.post-header {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  text-align: center;
+}
