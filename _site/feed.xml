@@ -5,8 +5,8 @@
     <description>Some lines , a bit elaborated</description>
     <link>http://nidaismailshah.github.io/</link>
     <atom:link href="http://nidaismailshah.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 13 Jan 2015 14:29:45 +0530</pubDate>
-    <lastBuildDate>Tue, 13 Jan 2015 14:29:45 +0530</lastBuildDate>
+    <pubDate>Fri, 16 Jan 2015 09:15:07 +0530</pubDate>
+    <lastBuildDate>Fri, 16 Jan 2015 09:15:07 +0530</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
@@ -86,8 +86,8 @@ The code would look somewhat like this:&lt;/p&gt;
 &lt;p&gt;Stay tuned!&lt;/p&gt;
 </description>
         <pubDate>Mon, 12 Jan 2015 23:30:00 +0530</pubDate>
-        <link>http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility3/</link>
-        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility3/</guid>
+        <link>http://nidaismailshah.github.io/drupal/drupalblockvisibility3.html</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/drupalblockvisibility3.html</guid>
         
         <category>1</category>
         
@@ -181,8 +181,8 @@ So we have our custom table created and data would be queried into it when a blo
 &lt;p&gt;Stay tuned!&lt;/p&gt;
 </description>
         <pubDate>Mon, 12 Jan 2015 19:30:00 +0530</pubDate>
-        <link>http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility2/</link>
-        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/2015/01/12/drupalblockvisibility2/</guid>
+        <link>http://nidaismailshah.github.io/drupal/drupalblockvisibility2.html</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/drupalblockvisibility2.html</guid>
         
         <category>1</category>
         
@@ -246,14 +246,14 @@ So we have our custom table created and data would be queried into it when a blo
 &lt;p&gt;To create our custom, our code should implement the same hook_form_FORM_ID_alter() and define a fieldset as:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;vg&quot;&gt;$form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;visibility&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;our custom tab&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;configurations&lt;/span&gt;
+&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#configurations&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;We can also keep various elements inside our custom tab and use them to obtain values from users such as node types, date etc and customize the block visibility based on these values.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;vg&quot;&gt;$form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;visibility&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;our custom tab&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;our element&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
  &lt;span class=&quot;s1&quot;&gt;&amp;#39;#type&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;textfield&amp;#39;&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;say&lt;/span&gt;
- &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;configurations&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+ &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#other configurations.&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Let’s say we had to restrict the visibility of blocks before or after a certain date. To do this job we would need to ask users for the date. we can do that by simply defining a custom tab as above and asking users to enter the date in a text field and then use the date value to restrict the blocks’ visibility. Just like this: &lt;img src=&quot;/images/drupal/4.png&quot; /&gt;
@@ -272,7 +272,7 @@ The code for this would look somewhat like this:&lt;/p&gt;
     &lt;span class=&quot;s1&quot;&gt;&amp;#39;:module&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;module&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#value&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;s1&quot;&gt;&amp;#39;:delta&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;delta&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;#value&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;PDO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;FETCH_BOTH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;The&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertical&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#The Post Date vertical tab.&lt;/span&gt;
   &lt;span class=&quot;vg&quot;&gt;$form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;visibility&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;post_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s1&quot;&gt;&amp;#39;#type&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;fieldset&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;s1&quot;&gt;&amp;#39;#title&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Post Date&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
@@ -282,7 +282,7 @@ The code for this would look somewhat like this:&lt;/p&gt;
     &lt;span class=&quot;s1&quot;&gt;&amp;#39;#weight&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;The&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;radio&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertical&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#The radio button in the post date vertical tab.&lt;/span&gt;
   &lt;span class=&quot;vg&quot;&gt;$form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;visibility&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;post_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;start&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s1&quot;&gt;&amp;#39;#type&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;radios&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;s1&quot;&gt;&amp;#39;#title&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Show block for nodes created&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
@@ -293,7 +293,7 @@ The code for this would look somewhat like this:&lt;/p&gt;
     	&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;The&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;post&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertical&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tab&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#The date field in the post date vertical tab.&lt;/span&gt;
   &lt;span class=&quot;vg&quot;&gt;$form&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;visibility&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;post_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;res_date&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
   	&lt;span class=&quot;s1&quot;&gt;&amp;#39;#type&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;textfield&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   	&lt;span class=&quot;s1&quot;&gt;&amp;#39;#title&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Date&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
@@ -308,8 +308,8 @@ The code for this would look somewhat like this:&lt;/p&gt;
 &lt;p&gt;I’ll soon be writing another blogpost to explain how to restrict a block’s visibility on a certain page. Stay tuned!&lt;/p&gt;
 </description>
         <pubDate>Mon, 05 Jan 2015 20:05:05 +0530</pubDate>
-        <link>http://nidaismailshah.github.io/drupal/2015/01/05/drupalblockvisibility1/</link>
-        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/2015/01/05/drupalblockvisibility1/</guid>
+        <link>http://nidaismailshah.github.io/drupal/drupalblockvisibility1.html</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/drupal/drupalblockvisibility1.html</guid>
         
         <category>1</category>
         
@@ -364,8 +364,8 @@ The code for this would look somewhat like this:&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 05 Aug 2014 20:05:05 +0530</pubDate>
-        <link>http://nidaismailshah.github.io/poetry/2014/08/05/IWish/</link>
-        <guid isPermaLink="true">http://nidaismailshah.github.io/poetry/2014/08/05/IWish/</guid>
+        <link>http://nidaismailshah.github.io/poetry/IWish.html</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/poetry/IWish.html</guid>
         
         <category>2</category>
         
@@ -420,8 +420,8 @@ The code for this would look somewhat like this:&lt;/p&gt;
 
 </description>
         <pubDate>Sun, 03 Aug 2014 05:26:05 +0530</pubDate>
-        <link>http://nidaismailshah.github.io/poetry/2014/08/03/TrailOfLove/</link>
-        <guid isPermaLink="true">http://nidaismailshah.github.io/poetry/2014/08/03/TrailOfLove/</guid>
+        <link>http://nidaismailshah.github.io/poetry/TrailOfLove.html</link>
+        <guid isPermaLink="true">http://nidaismailshah.github.io/poetry/TrailOfLove.html</guid>
         
         <category>2</category>
         

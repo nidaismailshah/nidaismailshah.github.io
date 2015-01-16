@@ -12,7 +12,7 @@
     <meta property="og:image" content="http://nidashah.com/images/nida.jpg" />
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Some lines , a bit elaborated">
-    <link rel="canonical" href="http://nidaismailshah.github.io/drupal/2015/01/05/drupalblockvisibility1/">
+    <link rel="canonical" href="http://nidaismailshah.github.io/drupal/drupalblockvisibility1.html">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
   <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
@@ -131,14 +131,14 @@
 <p>To create our custom, our code should implement the same hook_form_FORM_ID_alter() and define a fieldset as:</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;visibility&#39;</span><span class="o">][</span><span class="s1">&#39;our custom tab&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
-<span class="sr">//</span> <span class="n">configurations</span>
+<span class="sr">//</span> <span class="c1">#configurations</span>
 <span class="p">);</span></code></pre></div>
 
 <p>We can also keep various elements inside our custom tab and use them to obtain values from users such as node types, date etc and customize the block visibility based on these values.</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;visibility&#39;</span><span class="o">][</span><span class="s1">&#39;our custom tab&#39;</span><span class="o">][</span><span class="s1">&#39;our element&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
  <span class="s1">&#39;#type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;textfield&#39;</span> <span class="sr">//</span> <span class="n">say</span>
- <span class="sr">//</span> <span class="n">other</span> <span class="n">configurations</span><span class="o">.</span>
+ <span class="sr">//</span> <span class="c1">#other configurations.</span>
 <span class="p">);</span></code></pre></div>
 
 <p>Let’s say we had to restrict the visibility of blocks before or after a certain date. To do this job we would need to ask users for the date. we can do that by simply defining a custom tab as above and asking users to enter the date in a text field and then use the date value to restrict the blocks’ visibility. Just like this: <img src="/images/drupal/4.png" />
@@ -157,7 +157,7 @@ The code for this would look somewhat like this:</p>
     <span class="s1">&#39;:module&#39;</span> <span class="o">=&gt;</span> <span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;module&#39;</span><span class="o">][</span><span class="s1">&#39;#value&#39;</span><span class="o">]</span><span class="p">,</span>
     <span class="s1">&#39;:delta&#39;</span> <span class="o">=&gt;</span> <span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;delta&#39;</span><span class="o">][</span><span class="s1">&#39;#value&#39;</span><span class="o">]</span><span class="p">,</span>
     <span class="p">))</span><span class="o">-&gt;</span><span class="n">fetch</span><span class="p">(</span><span class="no">PDO</span><span class="o">::</span><span class="no">FETCH_BOTH</span><span class="p">);</span>
-  <span class="sr">//</span> <span class="no">The</span> <span class="no">Post</span> <span class="no">Date</span> <span class="n">vertical</span> <span class="n">tab</span><span class="o">.</span>
+  <span class="sr">//</span> <span class="c1">#The Post Date vertical tab.</span>
   <span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;visibility&#39;</span><span class="o">][</span><span class="s1">&#39;post_date&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
     <span class="s1">&#39;#type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;fieldset&#39;</span><span class="p">,</span>
     <span class="s1">&#39;#title&#39;</span> <span class="o">=&gt;</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;Post Date&#39;</span><span class="p">),</span>
@@ -167,7 +167,7 @@ The code for this would look somewhat like this:</p>
     <span class="s1">&#39;#weight&#39;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span>
   <span class="p">);</span>
 
-  <span class="sr">//</span> <span class="no">The</span> <span class="n">radio</span> <span class="n">button</span> <span class="k">in</span> <span class="n">the</span> <span class="n">post</span> <span class="n">date</span> <span class="n">vertical</span> <span class="n">tab</span><span class="o">.</span>
+  <span class="sr">//</span> <span class="c1">#The radio button in the post date vertical tab.</span>
   <span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;visibility&#39;</span><span class="o">][</span><span class="s1">&#39;post_date&#39;</span><span class="o">][</span><span class="s1">&#39;start&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
     <span class="s1">&#39;#type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;radios&#39;</span><span class="p">,</span>
     <span class="s1">&#39;#title&#39;</span> <span class="o">=&gt;</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;Show block for nodes created&#39;</span><span class="p">),</span>
@@ -178,7 +178,7 @@ The code for this would look somewhat like this:</p>
     	<span class="p">),</span>
   <span class="p">);</span>
 
-  <span class="sr">//</span> <span class="no">The</span> <span class="n">date</span> <span class="n">field</span> <span class="k">in</span> <span class="n">the</span> <span class="n">post</span> <span class="n">date</span> <span class="n">vertical</span> <span class="n">tab</span><span class="o">.</span>
+  <span class="sr">//</span> <span class="c1">#The date field in the post date vertical tab.</span>
   <span class="vg">$form</span><span class="o">[</span><span class="s1">&#39;visibility&#39;</span><span class="o">][</span><span class="s1">&#39;post_date&#39;</span><span class="o">][</span><span class="s1">&#39;res_date&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
   	<span class="s1">&#39;#type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;textfield&#39;</span><span class="p">,</span>
   	<span class="s1">&#39;#title&#39;</span> <span class="o">=&gt;</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">),</span>

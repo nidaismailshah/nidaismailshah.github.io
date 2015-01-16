@@ -11,4 +11,4 @@ gplus_username: +NidaIsmailShah
 
 # Build settings
 markdown: kramdown
-permalink: pretty
+permalink: none

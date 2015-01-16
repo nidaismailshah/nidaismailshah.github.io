@@ -58,14 +58,14 @@ function node_form_block_admin_configure_alter(&$form, &$form_state) {
 To create our custom, our code should implement the same hook_form_FORM_ID_alter() and define a fieldset as:
 {% highlight ruby %}
 $form['visibility']['our custom tab'] = array(
-// configurations
+// #configurations
 );
 {% endhighlight %}
 We can also keep various elements inside our custom tab and use them to obtain values from users such as node types, date etc and customize the block visibility based on these values.
 {% highlight ruby %}
 $form['visibility']['our custom tab']['our element'] = array(
  '#type' => 'textfield' // say
- // other configurations.
+ // #other configurations.
 );
 {% endhighlight %}
 
@@ -85,7 +85,7 @@ The code for this would look somewhat like this:
     ':module' => $form['module']['#value'],
     ':delta' => $form['delta']['#value'],
     ))->fetch(PDO::FETCH_BOTH);
-  // The Post Date vertical tab.
+  // #The Post Date vertical tab.
   $form['visibility']['post_date'] = array(
     '#type' => 'fieldset',
     '#title' => t('Post Date'),
@@ -95,7 +95,7 @@ The code for this would look somewhat like this:
     '#weight' => 30,
   );
 
-  // The radio button in the post date vertical tab.
+  // #The radio button in the post date vertical tab.
   $form['visibility']['post_date']['start'] = array(
     '#type' => 'radios',
     '#title' => t('Show block for nodes created'),
@@ -106,7 +106,7 @@ The code for this would look somewhat like this:
     	),
   );
 
-  // The date field in the post date vertical tab.
+  // #The date field in the post date vertical tab.
   $form['visibility']['post_date']['res_date'] = array(
   	'#type' => 'textfield',
   	'#title' => t('Date'),

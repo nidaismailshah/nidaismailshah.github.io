@@ -158,50 +158,212 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 72, ../sass/components/_global.scss */
 .description {
   display: block;
-  width: 80%;
   margin: auto;
   padding-top: 1em;
 }
-/* line 77, ../sass/components/_global.scss */
+/* line 76, ../sass/components/_global.scss */
 .description .tags {
   font-weight: 600;
+  max-width: 600px;
+  text-align: center;
+  margin: auto;
 }
 
-/* line 81, ../sass/components/_global.scss */
+/* line 83, ../sass/components/_global.scss */
 .pic {
   display: block;
   width: 100px;
   margin: auto;
 }
 
-/* line 86, ../sass/components/_global.scss */
+/* line 88, ../sass/components/_global.scss */
 .pic img {
   border: 2px solid #575454;
   border-radius: 80px;
   padding: 5px;
 }
 
-/* line 91, ../sass/components/_global.scss */
+/* line 93, ../sass/components/_global.scss */
 .highlight {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-/* line 95, ../sass/components/_global.scss */
+/* line 97, ../sass/components/_global.scss */
 .posts li {
   padding-bottom: 1em;
   border-bottom: 1px solid #cecece;
 }
 
-/* line 99, ../sass/components/_global.scss */
+/* line 101, ../sass/components/_global.scss */
 .site-header .wrap {
   max-width: 980px;
   margin: auto;
 }
 
-/* line 103, ../sass/components/_global.scss */
+/* line 105, ../sass/components/_global.scss */
 .post-header {
   margin-top: 1em;
   margin-bottom: 2em;
   text-align: center;
+}
+
+/* Site header */
+/* line 112, ../sass/components/_global.scss */
+.site-header {
+  min-height: 56px;
+  /*background-color: #575454;*/
+  height: 100%;
+  font-weight: 400;
+}
+
+/* line 120, ../sass/components/_global.scss */
+.site-title,
+.site-title:hover,
+.site-title:visited {
+  text-decoration: none;
+  display: block;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0px;
+  float: left;
+  line-height: 56px;
+  position: relative;
+  z-index: 1;
+}
+
+/* line 135, ../sass/components/_global.scss */
+.site-nav {
+  line-height: 56px;
+}
+
+/* line 139, ../sass/components/_global.scss */
+.site-nav .menu-icon {
+  display: none;
+}
+
+/* line 141, ../sass/components/_global.scss */
+.site-nav .page-link {
+  display: block;
+  margin-left: 0px;
+  color: #fff;
+  letter-spacing: .5px;
+}
+
+@media screen and (max-width: 750px) {
+  /* line 3, ../sass/components/_layouts.scss */
+  .footer-col-1 {
+    width: 50%;
+  }
+
+  /* line 5, ../sass/components/_layouts.scss */
+  .footer-col-2 {
+    width: 45%;
+    /*fallback*/
+    width: -webkit-calc(50% - 10px);
+    width: -moz-calc(50% - 10px);
+    width: -o-calc(50% - 10px);
+    width: calc(50% - 10px);
+    margin-right: 0;
+  }
+
+  /* line 14, ../sass/components/_layouts.scss */
+  .site-footer .column.footer-col-3 {
+    width: auto;
+    float: none;
+    clear: both;
+  }
+}
+@media screen and (max-width: 600px) {
+  /* line 24, ../sass/components/_layouts.scss */
+  .site-nav:hover .trigger {
+    display: block;
+  }
+
+  /* line 28, ../sass/components/_layouts.scss */
+  .site-nav {
+    position: fixed;
+    z-index: 10;
+    top: 14px;
+    right: 8px;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+  }
+  /* line 37, ../sass/components/_layouts.scss */
+  .site-nav .page-link {
+    display: block;
+    text-align: right;
+    line-height: 1.25;
+    padding: 5px 10px;
+    margin: 0;
+  }
+  /* line 44, ../sass/components/_layouts.scss */
+  .site-nav .trigger {
+    clear: both;
+    margin-bottom: 5px;
+    display: none;
+  }
+  /* line 49, ../sass/components/_layouts.scss */
+  .site-nav .menu-icon {
+    display: block;
+    font-size: 24px;
+    color: #505050;
+    float: right;
+    width: 36px;
+    text-align: center;
+    line-height: 36px;
+  }
+  /* line 57, ../sass/components/_layouts.scss */
+  .site-nav .menu-icon svg {
+    width: 18px;
+    height: 16px;
+  }
+
+  /* line 64, ../sass/components/_layouts.scss */
+  .post-header h1 {
+    font-size: 36px;
+  }
+
+  /* line 65, ../sass/components/_layouts.scss */
+  .post-content h2 {
+    font-size: 28px;
+  }
+
+  /* line 66, ../sass/components/_layouts.scss */
+  .post-content h3 {
+    font-size: 22px;
+  }
+
+  /* line 67, ../sass/components/_layouts.scss */
+  .post-content h4 {
+    font-size: 18px;
+  }
+
+  /* line 68, ../sass/components/_layouts.scss */
+  .post-content blockquote {
+    padding-left: 10px;
+  }
+
+  /* line 69, ../sass/components/_layouts.scss */
+  .post-content ul,
+  .post-content ol {
+    padding-left: 10px;
+  }
+
+  /* line 72, ../sass/components/_layouts.scss */
+  .site-footer .column {
+    float: none;
+    clear: both;
+    width: auto;
+    margin: 0 0 15px;
+  }
+
+  /* .post-content {
+    margin: none;
+  }
+  */
 }
