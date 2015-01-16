@@ -5,8 +5,8 @@
     <description>Some lines , a bit elaborated</description>
     <link>http://nidaismailshah.github.io/</link>
     <atom:link href="http://nidaismailshah.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 16 Jan 2015 09:15:07 +0530</pubDate>
-    <lastBuildDate>Fri, 16 Jan 2015 09:15:07 +0530</lastBuildDate>
+    <pubDate>Fri, 16 Jan 2015 23:13:23 +0530</pubDate>
+    <lastBuildDate>Fri, 16 Jan 2015 23:13:23 +0530</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
@@ -100,7 +100,7 @@ The code would look somewhat like this:&lt;/p&gt;
         <title>Managing Block Visibility in Drupal - 2.</title>
         <description>&lt;p&gt;Create a custom table and define various fields in it using &lt;code&gt;hook_schema()&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;This blog post is in continuation with the previous &lt;a href=&quot;/drupal/2015/01/05/drupalblockvisibility1/&quot;&gt;blog post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This blog post is in continuation with the previous &lt;a href=&quot;/drupal/drupalblockvisibility1.html&quot;&gt;blog post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;To manage blocks’ visibility we need to have parameters that would determine whether a block would be visible or not.
 The parameters that we need to set when we create or edit a block are:&lt;/p&gt;
@@ -110,7 +110,7 @@ The parameters that we need to set when we create or edit a block are:&lt;/p&gt;
 &lt;li&gt;&lt;em&gt;Roles&lt;/em&gt; : to restrict blocks&#39; visibility for certain user roles.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Users&lt;/em&gt; : to allow per user customizations for blocks.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;These parameters are available out of the box in any drupal site. To create custom parameters refer to this &lt;a href=&quot;/drupal/2015/01/05/drupalblockvisibility1/&quot;&gt;blog post&lt;/a&gt;.
+&lt;p&gt;These parameters are available out of the box in any drupal site. To create custom parameters refer to this &lt;a href=&quot;/drupal/drupalblockvisibility1.html&quot;&gt;blog post&lt;/a&gt;.
 We need to save these parameters/configurations into the database in a custom table. To create a custom table we can use &lt;code&gt;hook_schema()&lt;/code&gt;. &lt;code&gt;hook_schema()&lt;/code&gt; takes care of the table creation and deletion at the time of module installation and un-install respectively. In the following code, I’ve created a custom table named &lt;code&gt;block_date&lt;/code&gt; inside the &lt;code&gt;hook_schema()&lt;/code&gt; in the my_module.install file. Read more about hook_schema() &lt;a href=&quot;https://api.drupal.org/api/function/hook_schema&quot;&gt;here&lt;/a&gt; and .install files &lt;a href=&quot;https://www.drupal.org/node/876250&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sr&quot;&gt;/**&lt;/span&gt;

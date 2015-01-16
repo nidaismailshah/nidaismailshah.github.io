@@ -20,10 +20,13 @@
 }
 
 @media screen and (max-width: 600px) {
-  .site-nav:hover {
-  .trigger { 
-    display: block; 
+  .headerp .page-link {
+    color: #575454;
   }
+  .site-nav:hover {
+    .trigger { 
+      display: block; 
+    }
 }
   .site-nav {
     position: fixed;

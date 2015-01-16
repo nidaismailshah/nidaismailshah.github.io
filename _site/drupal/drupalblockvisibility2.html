@@ -80,7 +80,7 @@
   <article class="post-content">
   <p>Create a custom table and define various fields in it using <code>hook_schema()</code>.</p>
 
-<p>This blog post is in continuation with the previous <a href="/drupal/2015/01/05/drupalblockvisibility1/">blog post</a>.</p>
+<p>This blog post is in continuation with the previous <a href="/drupal/drupalblockvisibility1.html">blog post</a>.</p>
 
 <p>To manage blocks’ visibility we need to have parameters that would determine whether a block would be visible or not.
 The parameters that we need to set when we create or edit a block are:</p>
@@ -90,7 +90,7 @@ The parameters that we need to set when we create or edit a block are:</p>
 <li><em>Roles</em> : to restrict blocks' visibility for certain user roles.</li>
 <li><em>Users</em> : to allow per user customizations for blocks.</li>
 </ul>
-<p>These parameters are available out of the box in any drupal site. To create custom parameters refer to this <a href="/drupal/2015/01/05/drupalblockvisibility1/">blog post</a>.
+<p>These parameters are available out of the box in any drupal site. To create custom parameters refer to this <a href="/drupal/drupalblockvisibility1.html">blog post</a>.
 We need to save these parameters/configurations into the database in a custom table. To create a custom table we can use <code>hook_schema()</code>. <code>hook_schema()</code> takes care of the table creation and deletion at the time of module installation and un-install respectively. In the following code, I’ve created a custom table named <code>block_date</code> inside the <code>hook_schema()</code> in the my_module.install file. Read more about hook_schema() <a href="https://api.drupal.org/api/function/hook_schema">here</a> and .install files <a href="https://www.drupal.org/node/876250">here</a>.</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">/**</span>

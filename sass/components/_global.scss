@@ -144,3 +144,16 @@
   color: #fff;
   letter-spacing: .5px;
 }
+.tagline {
+	max-width: 600px;
+	text-align: center;
+	color: white;
+	margin: auto;
+	padding-top: 30em;
+	font-weight: 100;
+	transition: color 1.5s;
+}
+.tagline:hover {
+	color: #000;
+	transition: color 1.5s;
+}
