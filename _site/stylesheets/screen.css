@@ -73,41 +73,45 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   text-align: justify;
   line-height: 1.6;
 }
-/* line 5, ../sass/components/_global.scss */
+/* line 6, ../sass/components/_global.scss */
+.post-content .poetry {
+  text-align: center;
+}
+/* line 10, ../sass/components/_global.scss */
 .post-content a {
   font-weight: 500;
 }
-/* line 8, ../sass/components/_global.scss */
+/* line 14, ../sass/components/_global.scss */
 .post-content a:hover {
   text-decoration: underline;
   color: #000;
   -webkit-transition: color 1s;
   transition: color 1s;
 }
-/* line 14, ../sass/components/_global.scss */
+/* line 21, ../sass/components/_global.scss */
 .post-content p {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 19, ../sass/components/_global.scss */
+/* line 26, ../sass/components/_global.scss */
 .post-content h1 {
   margin: 10px 0 10px 0;
   font-size: 30px;
   font-weight: bold;
 }
-/* line 24, ../sass/components/_global.scss */
+/* line 32, ../sass/components/_global.scss */
 .post-content ul {
   list-style: square;
   font-weight: 500;
   padding-left: 3em;
 }
-/* line 29, ../sass/components/_global.scss */
+/* line 38, ../sass/components/_global.scss */
 .post-content img {
   display: block;
   padding: 10px;
 }
 
-/* line 34, ../sass/components/_global.scss */
+/* line 44, ../sass/components/_global.scss */
 .post pre, .post code {
   border: 1px solid #d5d5e9;
   background-color: #FFF;
@@ -120,13 +124,32 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   overflow: scroll;
 }
 
-/* line 45, ../sass/components/_global.scss */
+/* line 55, ../sass/components/_global.scss */
+.highlight {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* line 59, ../sass/components/_global.scss */
+.posts li {
+  padding-bottom: 1em;
+  border-bottom: 1px solid #cecece;
+}
+
+/* Disqus comments block Styles */
+/* line 65, ../sass/components/_global.scss */
+div#disqus_thread {
+  padding-top: 2em;
+}
+
+/* About Page Styles */
+/* line 70, ../sass/components/_global.scss */
 .hire {
   text-align: center;
   margin-top: 4em;
   display: block;
 }
-/* line 49, ../sass/components/_global.scss */
+/* line 74, ../sass/components/_global.scss */
 .hire p {
   background: #575454;
   display: inline-block;
@@ -135,7 +158,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-radius: 5px;
   font-weight: 300;
 }
-/* line 57, ../sass/components/_global.scss */
+/* line 82, ../sass/components/_global.scss */
 .hire p:hover {
   cursor: pointer;
   background: #179490;
@@ -143,25 +166,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-weight: 400;
 }
 
-/* line 64, ../sass/components/_global.scss */
+/* line 89, ../sass/components/_global.scss */
 .about p {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 68, ../sass/components/_global.scss */
+/* line 93, ../sass/components/_global.scss */
 .about {
   max-width: 100%;
   margin: auto;
 }
 
-/* line 72, ../sass/components/_global.scss */
+/* line 97, ../sass/components/_global.scss */
 .description {
   display: block;
   margin: auto;
   padding-top: 1em;
 }
-/* line 76, ../sass/components/_global.scss */
+/* line 101, ../sass/components/_global.scss */
 .description .tags {
   font-weight: 600;
   max-width: 600px;
@@ -169,39 +192,28 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin: auto;
 }
 
-/* line 83, ../sass/components/_global.scss */
+/* line 108, ../sass/components/_global.scss */
 .pic {
   display: block;
   width: 100px;
   margin: auto;
 }
 
-/* line 88, ../sass/components/_global.scss */
+/* line 113, ../sass/components/_global.scss */
 .pic img {
   border: 2px solid #575454;
   border-radius: 80px;
   padding: 5px;
 }
 
-/* line 93, ../sass/components/_global.scss */
-.highlight {
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-/* line 97, ../sass/components/_global.scss */
-.posts li {
-  padding-bottom: 1em;
-  border-bottom: 1px solid #cecece;
-}
-
-/* line 101, ../sass/components/_global.scss */
+/* Header Styles */
+/* line 120, ../sass/components/_global.scss */
 .site-header .wrap {
   max-width: 980px;
   margin: auto;
 }
 
-/* line 105, ../sass/components/_global.scss */
+/* line 124, ../sass/components/_global.scss */
 .post-header {
   margin-top: 1em;
   margin-bottom: 2em;
@@ -209,7 +221,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* Site header */
-/* line 112, ../sass/components/_global.scss */
+/* line 131, ../sass/components/_global.scss */
 .site-header {
   min-height: 56px;
   /*background-color: #575454;*/
@@ -217,7 +229,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-weight: 400;
 }
 
-/* line 120, ../sass/components/_global.scss */
+/* line 139, ../sass/components/_global.scss */
 .site-title,
 .site-title:hover,
 .site-title:visited {
@@ -233,17 +245,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   z-index: 1;
 }
 
-/* line 135, ../sass/components/_global.scss */
+/* line 154, ../sass/components/_global.scss */
 .site-nav {
   line-height: 56px;
 }
 
-/* line 139, ../sass/components/_global.scss */
+/* line 158, ../sass/components/_global.scss */
 .site-nav .menu-icon {
   display: none;
 }
 
-/* line 141, ../sass/components/_global.scss */
+/* line 160, ../sass/components/_global.scss */
 .site-nav .page-link {
   display: block;
   margin-left: 0px;
@@ -252,7 +264,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /* Home Page Styles */
-/* line 150, ../sass/components/_global.scss */
+/* line 169, ../sass/components/_global.scss */
 .tagline {
   max-width: 600px;
   text-align: center;
@@ -263,24 +275,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   transition: color 1.5s;
 }
 
-/* line 159, ../sass/components/_global.scss */
+/* line 178, ../sass/components/_global.scss */
 .opensource {
   font-size: 30px;
   font-weight: 700;
 }
 
-/* line 163, ../sass/components/_global.scss */
+/* line 182, ../sass/components/_global.scss */
 .headerp {
   height: 7%;
   width: 100%;
   position: fixed;
 }
-/* line 167, ../sass/components/_global.scss */
+/* line 186, ../sass/components/_global.scss */
 .headerp .site-nav {
   display: inline-block;
   float: right;
 }
-/* line 170, ../sass/components/_global.scss */
+/* line 189, ../sass/components/_global.scss */
 .headerp .site-nav .page-link {
   margin-left: 10px;
   display: inline-block;
