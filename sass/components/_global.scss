@@ -144,16 +144,33 @@
   color: #fff;
   letter-spacing: .5px;
 }
+
+/* Home Page Styles */
+
 .tagline {
 	max-width: 600px;
 	text-align: center;
 	color: white;
 	margin: auto;
-	padding-top: 30em;
+	padding-top: 29em;
 	font-weight: 100;
 	transition: color 1.5s;
 }
-.tagline:hover {
-	color: #000;
-	transition: color 1.5s;
+.opensource {
+	font-size: 30px;
+	font-weight: 700;
+}
+.headerp {
+  height:7%;
+  width:100%;
+  position: fixed;
+	.site-nav {
+	  display: inline-block;
+	  float: right;
+		.page-link {
+		  margin-left:10px;
+		  display: inline-block;
+		  font-weight: 600;
+		}
+	}
 }

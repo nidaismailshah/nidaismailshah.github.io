@@ -309,23 +309,7 @@ a:visited { color: #205caa; }
   }
   */
 
-.headerp{
-  height:7%;
-  width:100%;
-  position: fixed;
-}
-.headerp .site-nav{
-  display: inline-block;
-  float: right;
-}
-.headerp .site-nav .page-link{
-  margin-left:10px;
-  display: inline-block;
-  font-weight: 600;
-}
-.headerp .site-nav .page-link:hover{
-  font-size: 20px;
-}
+
 .page-content .wrap{
   height: 100%;
 }

@@ -251,21 +251,40 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   letter-spacing: .5px;
 }
 
-/* line 147, ../sass/components/_global.scss */
+/* Home Page Styles */
+/* line 150, ../sass/components/_global.scss */
 .tagline {
   max-width: 600px;
   text-align: center;
   color: white;
   margin: auto;
-  padding-top: 30em;
+  padding-top: 29em;
   font-weight: 100;
   transition: color 1.5s;
 }
 
-/* line 156, ../sass/components/_global.scss */
-.tagline:hover {
-  color: #000;
-  transition: color 1.5s;
+/* line 159, ../sass/components/_global.scss */
+.opensource {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* line 163, ../sass/components/_global.scss */
+.headerp {
+  height: 7%;
+  width: 100%;
+  position: fixed;
+}
+/* line 167, ../sass/components/_global.scss */
+.headerp .site-nav {
+  display: inline-block;
+  float: right;
+}
+/* line 170, ../sass/components/_global.scss */
+.headerp .site-nav .page-link {
+  margin-left: 10px;
+  display: inline-block;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 750px) {
