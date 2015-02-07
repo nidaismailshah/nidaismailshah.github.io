@@ -16,4 +16,9 @@ permalink: /blog/
 	    {% endfor %}
 	 </ul>
  </div>
- 
+<!-- <div class="recent-posts">
+ 	{% for post in site.posts %}
+	 <div class="recent-post"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+	    {% endfor %}</div>
+ </div>
+ -->

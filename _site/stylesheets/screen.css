@@ -161,30 +161,28 @@ div#disqus_thread {
 /* line 82, ../sass/components/_global.scss */
 .hire p:hover {
   cursor: pointer;
-  background: #179490;
-  color: #000;
-  font-weight: 400;
+  background: #205caa;
 }
 
-/* line 89, ../sass/components/_global.scss */
+/* line 87, ../sass/components/_global.scss */
 .about p {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 93, ../sass/components/_global.scss */
+/* line 91, ../sass/components/_global.scss */
 .about {
   max-width: 100%;
   margin: auto;
 }
 
-/* line 97, ../sass/components/_global.scss */
+/* line 95, ../sass/components/_global.scss */
 .description {
   display: block;
   margin: auto;
   padding-top: 1em;
 }
-/* line 101, ../sass/components/_global.scss */
+/* line 99, ../sass/components/_global.scss */
 .description .tags {
   font-weight: 600;
   max-width: 600px;
@@ -192,14 +190,14 @@ div#disqus_thread {
   margin: auto;
 }
 
-/* line 108, ../sass/components/_global.scss */
+/* line 106, ../sass/components/_global.scss */
 .pic {
   display: block;
   width: 100px;
   margin: auto;
 }
 
-/* line 113, ../sass/components/_global.scss */
+/* line 111, ../sass/components/_global.scss */
 .pic img {
   border: 2px solid #575454;
   border-radius: 80px;
@@ -207,13 +205,13 @@ div#disqus_thread {
 }
 
 /* Header Styles */
-/* line 120, ../sass/components/_global.scss */
+/* line 118, ../sass/components/_global.scss */
 .site-header .wrap {
   max-width: 980px;
   margin: auto;
 }
 
-/* line 124, ../sass/components/_global.scss */
+/* line 122, ../sass/components/_global.scss */
 .post-header {
   margin-top: 1em;
   margin-bottom: 2em;
@@ -221,7 +219,7 @@ div#disqus_thread {
 }
 
 /* Site header */
-/* line 131, ../sass/components/_global.scss */
+/* line 129, ../sass/components/_global.scss */
 .site-header {
   min-height: 56px;
   /*background-color: #575454;*/
@@ -229,7 +227,7 @@ div#disqus_thread {
   font-weight: 400;
 }
 
-/* line 139, ../sass/components/_global.scss */
+/* line 137, ../sass/components/_global.scss */
 .site-title,
 .site-title:hover,
 .site-title:visited {
@@ -245,17 +243,17 @@ div#disqus_thread {
   z-index: 1;
 }
 
-/* line 154, ../sass/components/_global.scss */
+/* line 152, ../sass/components/_global.scss */
 .site-nav {
   line-height: 56px;
 }
 
-/* line 158, ../sass/components/_global.scss */
+/* line 156, ../sass/components/_global.scss */
 .site-nav .menu-icon {
   display: none;
 }
 
-/* line 160, ../sass/components/_global.scss */
+/* line 158, ../sass/components/_global.scss */
 .site-nav .page-link {
   display: block;
   margin-left: 0px;
@@ -264,7 +262,7 @@ div#disqus_thread {
 }
 
 /* Home Page Styles */
-/* line 169, ../sass/components/_global.scss */
+/* line 167, ../sass/components/_global.scss */
 .tagline {
   max-width: 600px;
   text-align: center;
@@ -275,24 +273,24 @@ div#disqus_thread {
   transition: color 1.5s;
 }
 
-/* line 178, ../sass/components/_global.scss */
+/* line 176, ../sass/components/_global.scss */
 .opensource {
   font-size: 30px;
   font-weight: 700;
 }
 
-/* line 182, ../sass/components/_global.scss */
+/* line 180, ../sass/components/_global.scss */
 .headerp {
   height: 7%;
   width: 100%;
   position: fixed;
 }
-/* line 186, ../sass/components/_global.scss */
+/* line 184, ../sass/components/_global.scss */
 .headerp .site-nav {
   display: inline-block;
   float: right;
 }
-/* line 189, ../sass/components/_global.scss */
+/* line 187, ../sass/components/_global.scss */
 .headerp .site-nav .page-link {
   margin-left: 10px;
   display: inline-block;
