@@ -6,11 +6,11 @@ categories:  "poetry"
 tag: 2
 ---
 
-Without an owner, to lend all your beliefs to,
-
 For life wouldn't be a life anymore,
 
-And with a blasphemic purpose of life,
+Without an owner, to lend all your beliefs to,
+
+And with a blasphemous purpose of life,
 
 I propose the downfall of all my creation
 
