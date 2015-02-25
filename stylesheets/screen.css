@@ -151,38 +151,43 @@ div#disqus_thread {
 }
 /* line 74, ../sass/components/_global.scss */
 .hire p {
-  background: #575454;
+  background: #205caa;
   display: inline-block;
   padding: 5px 10px;
   color: #fff;
   border-radius: 5px;
   font-weight: 300;
+  border-bottom: 2px solid #000;
+  text-decoration: line-through;
 }
-/* line 82, ../sass/components/_global.scss */
+/* line 84, ../sass/components/_global.scss */
 .hire p:hover {
   cursor: pointer;
-  background: #205caa;
+  background: #d9d9d9;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
+  border-bottom: none;
 }
 
-/* line 87, ../sass/components/_global.scss */
+/* line 92, ../sass/components/_global.scss */
 .about p {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 91, ../sass/components/_global.scss */
+/* line 96, ../sass/components/_global.scss */
 .about {
   max-width: 100%;
   margin: auto;
 }
 
-/* line 95, ../sass/components/_global.scss */
+/* line 100, ../sass/components/_global.scss */
 .description {
   display: block;
   margin: auto;
   padding-top: 1em;
 }
-/* line 99, ../sass/components/_global.scss */
+/* line 104, ../sass/components/_global.scss */
 .description .tags {
   font-weight: 600;
   max-width: 600px;
@@ -190,14 +195,14 @@ div#disqus_thread {
   margin: auto;
 }
 
-/* line 106, ../sass/components/_global.scss */
+/* line 111, ../sass/components/_global.scss */
 .pic {
   display: block;
   width: 100px;
   margin: auto;
 }
 
-/* line 111, ../sass/components/_global.scss */
+/* line 116, ../sass/components/_global.scss */
 .pic img {
   border: 2px solid #575454;
   border-radius: 80px;
@@ -205,13 +210,13 @@ div#disqus_thread {
 }
 
 /* Header Styles */
-/* line 118, ../sass/components/_global.scss */
+/* line 123, ../sass/components/_global.scss */
 .site-header .wrap {
   max-width: 980px;
   margin: auto;
 }
 
-/* line 122, ../sass/components/_global.scss */
+/* line 127, ../sass/components/_global.scss */
 .post-header {
   margin-top: 1em;
   margin-bottom: 2em;
@@ -219,7 +224,7 @@ div#disqus_thread {
 }
 
 /* Site header */
-/* line 129, ../sass/components/_global.scss */
+/* line 134, ../sass/components/_global.scss */
 .site-header {
   min-height: 56px;
   /*background-color: #575454;*/
@@ -227,7 +232,7 @@ div#disqus_thread {
   font-weight: 400;
 }
 
-/* line 137, ../sass/components/_global.scss */
+/* line 142, ../sass/components/_global.scss */
 .site-title,
 .site-title:hover,
 .site-title:visited {
@@ -243,17 +248,17 @@ div#disqus_thread {
   z-index: 1;
 }
 
-/* line 152, ../sass/components/_global.scss */
+/* line 157, ../sass/components/_global.scss */
 .site-nav {
   line-height: 56px;
 }
 
-/* line 156, ../sass/components/_global.scss */
+/* line 161, ../sass/components/_global.scss */
 .site-nav .menu-icon {
   display: none;
 }
 
-/* line 158, ../sass/components/_global.scss */
+/* line 163, ../sass/components/_global.scss */
 .site-nav .page-link {
   display: block;
   margin-left: 0px;
@@ -262,7 +267,7 @@ div#disqus_thread {
 }
 
 /* Home Page Styles */
-/* line 167, ../sass/components/_global.scss */
+/* line 172, ../sass/components/_global.scss */
 .tagline {
   max-width: 600px;
   text-align: center;
@@ -273,24 +278,24 @@ div#disqus_thread {
   transition: color 1.5s;
 }
 
-/* line 176, ../sass/components/_global.scss */
+/* line 181, ../sass/components/_global.scss */
 .opensource {
   font-size: 30px;
   font-weight: 700;
 }
 
-/* line 180, ../sass/components/_global.scss */
+/* line 185, ../sass/components/_global.scss */
 .headerp {
   height: 7%;
   width: 100%;
   position: fixed;
 }
-/* line 184, ../sass/components/_global.scss */
+/* line 189, ../sass/components/_global.scss */
 .headerp .site-nav {
   display: inline-block;
   float: right;
 }
-/* line 187, ../sass/components/_global.scss */
+/* line 192, ../sass/components/_global.scss */
 .headerp .site-nav .page-link {
   margin-left: 10px;
   display: inline-block;

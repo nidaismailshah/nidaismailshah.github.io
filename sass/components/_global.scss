@@ -72,17 +72,21 @@ div#disqus_thread {
   margin-top: 4em;
   display: block;
 	p {
-		background: #575454;
+		background: #205caa;
 		display: inline-block;
 		padding: 5px 10px;
 		color: #fff;
 		border-radius: 5px;
 		font-weight: 300;
+		border-bottom: 2px solid #000;
+		text-decoration: line-through;
 	}
 	p:hover {
 	  cursor: pointer;
-	  background: #205caa;
-	  border-bottom: 2px solid #000;
+	  background: #d9d9d9;
+	  -webkit-transition: background 0.5s;
+	  transition: background 0.5s;
+	  border-bottom: none;
 	}
 }
 .about p {
