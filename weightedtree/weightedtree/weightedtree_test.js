@@ -205,7 +205,7 @@ function onMeasure() {
 function onMouseOver(e,d,i) {
   p = d.parent;
   parent = new Array();
-  while (true) {
+  while (p != undefined) {
     if(p.key === undefined) break;
     parent.push(p.key);
     p = p.parent;
