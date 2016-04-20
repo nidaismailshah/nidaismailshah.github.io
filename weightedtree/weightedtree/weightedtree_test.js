@@ -175,10 +175,10 @@ var datatip='<div class="tooltip" style="width: 250px; background-opacity:.5">' 
 // This function uses the above html template to replace values and then creates a new <div> that it appends to the
 // document.body.  This is just one way you could implement a data tip.
 function createDataTip(x,y,h1,h2,h3, parent) {
-    var x;
+    var par;
     var h = '';
-    for(x in parent) {
-      h += '<div class="parent">' + parent[x] + '</div>';
+    for(par in parent) {
+      h += '<div class="parent">' + parent[par] + '</div>';
     }
     h += '<div class="header1">' + h1 + '</div>';
     var html = datatip.replace('<div class="header1">HEADER1</div>', h);
@@ -190,7 +190,7 @@ function createDataTip(x,y,h1,h2,h3, parent) {
         .attr("class", "vz-weighted_tree-tip")
         .style("position", "absolute")
         .style("top", y + "px")
-        .style("left", (x) + "px")
+        .style("left", (x - 125) + "px")
         .style("opacity",0)
         .html(html)
         .transition().style("opacity",1);
