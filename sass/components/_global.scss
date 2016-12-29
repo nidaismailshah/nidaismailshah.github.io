@@ -22,6 +22,15 @@ li em {
 
 	.poetry {
 		text-align: center;
+		padding: 1em 0;
+		margin: 1em 0;
+		border-top: 1px solid rgb(234, 234, 234);
+		border-bottom: 1px solid rgb(234, 234, 234);
+		p {
+			font-family: 'Dancing Script', cursive;
+			font-size: 36px;
+			padding: 0;
+		}
     }
 
 	a {
