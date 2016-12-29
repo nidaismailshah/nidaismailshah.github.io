@@ -101,43 +101,53 @@ li em {
 /* line 23, ../sass/components/_global.scss */
 .post-content .poetry {
   text-align: center;
+  padding: 1em 0;
+  margin: 1em 0;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
 }
-/* line 27, ../sass/components/_global.scss */
+/* line 29, ../sass/components/_global.scss */
+.post-content .poetry p {
+  font-family: 'Dancing Script', cursive;
+  font-size: 36px;
+  padding: 0;
+}
+/* line 36, ../sass/components/_global.scss */
 .post-content a {
   font-weight: 800;
 }
-/* line 31, ../sass/components/_global.scss */
+/* line 40, ../sass/components/_global.scss */
 .post-content a:hover {
   text-decoration: underline;
   color: #000;
   -webkit-transition: color 1s;
   transition: color 1s;
 }
-/* line 38, ../sass/components/_global.scss */
+/* line 47, ../sass/components/_global.scss */
 .post-content p {
   font-family: 'Lora', serif;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 44, ../sass/components/_global.scss */
+/* line 53, ../sass/components/_global.scss */
 .post-content h1 {
   margin: 10px 0 10px 0;
   font-size: 30px;
   font-weight: bold;
 }
-/* line 50, ../sass/components/_global.scss */
+/* line 59, ../sass/components/_global.scss */
 .post-content ul {
   list-style: square;
   font-weight: 500;
   padding-left: 3em;
 }
-/* line 56, ../sass/components/_global.scss */
+/* line 65, ../sass/components/_global.scss */
 .post-content img {
   display: block;
   padding: 10px;
 }
 
-/* line 62, ../sass/components/_global.scss */
+/* line 71, ../sass/components/_global.scss */
 .post pre, .post code {
   border: 1px solid #d5d5e9;
   color: #631502;
@@ -151,32 +161,32 @@ li em {
   overflow: scroll;
 }
 
-/* line 74, ../sass/components/_global.scss */
+/* line 83, ../sass/components/_global.scss */
 .highlight {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-/* line 78, ../sass/components/_global.scss */
+/* line 87, ../sass/components/_global.scss */
 .posts li {
   padding-bottom: 1em;
   border-bottom: 1px solid #cecece;
 }
 
 /* Disqus comments block Styles */
-/* line 84, ../sass/components/_global.scss */
+/* line 93, ../sass/components/_global.scss */
 div#disqus_thread {
   padding-top: 2em;
 }
 
 /* About Page Styles */
-/* line 89, ../sass/components/_global.scss */
+/* line 98, ../sass/components/_global.scss */
 .hire {
   text-align: center;
   margin-top: 4em;
   display: block;
 }
-/* line 93, ../sass/components/_global.scss */
+/* line 102, ../sass/components/_global.scss */
 .hire p {
   background: #205caa;
   display: inline-block;
@@ -187,7 +197,7 @@ div#disqus_thread {
   border-bottom: 2px solid #000;
   text-decoration: line-through;
 }
-/* line 103, ../sass/components/_global.scss */
+/* line 112, ../sass/components/_global.scss */
 .hire p:hover {
   cursor: pointer;
   background: #d9d9d9;
@@ -196,25 +206,25 @@ div#disqus_thread {
   border-bottom: none;
 }
 
-/* line 111, ../sass/components/_global.scss */
+/* line 120, ../sass/components/_global.scss */
 .about p {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 115, ../sass/components/_global.scss */
+/* line 124, ../sass/components/_global.scss */
 .about {
   max-width: 100%;
   margin: auto;
 }
 
-/* line 119, ../sass/components/_global.scss */
+/* line 128, ../sass/components/_global.scss */
 .description {
   display: block;
   margin: auto;
   padding-top: 1em;
 }
-/* line 123, ../sass/components/_global.scss */
+/* line 132, ../sass/components/_global.scss */
 .description .tags {
   font-weight: 600;
   max-width: 600px;
@@ -222,14 +232,14 @@ div#disqus_thread {
   margin: auto;
 }
 
-/* line 130, ../sass/components/_global.scss */
+/* line 139, ../sass/components/_global.scss */
 .pic {
   display: block;
   width: 100px;
   margin: auto;
 }
 
-/* line 135, ../sass/components/_global.scss */
+/* line 144, ../sass/components/_global.scss */
 .pic img {
   border: 2px solid #575454;
   border-radius: 80px;
@@ -237,14 +247,14 @@ div#disqus_thread {
 }
 
 /* Header Styles */
-/* line 142, ../sass/components/_global.scss */
+/* line 151, ../sass/components/_global.scss */
 .site-header .wrap {
   max-width: 1080px;
   padding: 0 15px;
   margin: auto;
 }
 
-/* line 147, ../sass/components/_global.scss */
+/* line 156, ../sass/components/_global.scss */
 .post-header {
   max-width: 850px;
   margin: auto;
@@ -253,14 +263,14 @@ div#disqus_thread {
   margin-bottom: 1em;
 }
 @media screen and (max-width: 750px) {
-  /* line 147, ../sass/components/_global.scss */
+  /* line 156, ../sass/components/_global.scss */
   .post-header {
     margin-top: 1.5em;
   }
 }
 
 /* Site header */
-/* line 159, ../sass/components/_global.scss */
+/* line 168, ../sass/components/_global.scss */
 .site-header {
   min-height: 56px;
   /*background-color: #575454;*/
@@ -268,7 +278,7 @@ div#disqus_thread {
   font-weight: 400;
 }
 
-/* line 167, ../sass/components/_global.scss */
+/* line 176, ../sass/components/_global.scss */
 .site-title,
 .site-title:hover,
 .site-title:visited {
@@ -284,17 +294,17 @@ div#disqus_thread {
   z-index: 1;
 }
 
-/* line 182, ../sass/components/_global.scss */
+/* line 191, ../sass/components/_global.scss */
 .site-nav {
   line-height: 56px;
 }
 
-/* line 186, ../sass/components/_global.scss */
+/* line 195, ../sass/components/_global.scss */
 .site-nav .menu-icon {
   display: none;
 }
 
-/* line 188, ../sass/components/_global.scss */
+/* line 197, ../sass/components/_global.scss */
 .site-nav .page-link {
   display: block;
   margin-left: 0px;
@@ -303,7 +313,7 @@ div#disqus_thread {
 }
 
 /* Home Page Styles */
-/* line 197, ../sass/components/_global.scss */
+/* line 206, ../sass/components/_global.scss */
 .tagline {
   max-width: 600px;
   text-align: center;
@@ -314,46 +324,46 @@ div#disqus_thread {
   transition: color 1.5s;
 }
 
-/* line 206, ../sass/components/_global.scss */
+/* line 215, ../sass/components/_global.scss */
 .opensource {
   font-size: 30px;
   font-weight: 700;
 }
 
-/* line 210, ../sass/components/_global.scss */
+/* line 219, ../sass/components/_global.scss */
 .headerp {
   height: 7%;
   width: 100%;
   position: fixed;
 }
-/* line 214, ../sass/components/_global.scss */
+/* line 223, ../sass/components/_global.scss */
 .headerp .site-nav {
   display: inline-block;
   float: right;
 }
-/* line 217, ../sass/components/_global.scss */
+/* line 226, ../sass/components/_global.scss */
 .headerp .site-nav .page-link {
   margin-left: 10px;
   display: inline-block;
   font-weight: 600;
 }
 
-/* line 224, ../sass/components/_global.scss */
+/* line 233, ../sass/components/_global.scss */
 .headerb {
   border-bottom: 1px solid #eaeaea;
 }
-/* line 226, ../sass/components/_global.scss */
+/* line 235, ../sass/components/_global.scss */
 .headerb .site-title {
   color: #575454;
   font-weight: 500;
   font-size: 18px;
 }
-/* line 231, ../sass/components/_global.scss */
+/* line 240, ../sass/components/_global.scss */
 .headerb .site-nav {
   float: right;
   display: inline-block;
 }
-/* line 234, ../sass/components/_global.scss */
+/* line 243, ../sass/components/_global.scss */
 .headerb .site-nav .page-link {
   margin-left: 10px;
   display: inline-block;
