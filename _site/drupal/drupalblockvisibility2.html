@@ -12,7 +12,7 @@
     <meta property="og:image" content="http://nidashah.com/images/share.png" />
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Some lines , a bit elaborated">
-    <link rel="canonical" href="http://nidaismailshah.github.io/drupal/drupalblockvisibility2.html">
+    <link rel="canonical" href="http://localhost:4000/drupal/drupalblockvisibility2.html">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
   <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
@@ -78,7 +78,7 @@
   </header>
 
   <article class="post-content">
-  <p>Create a custom table and define various fields in it using <code>hook_schema()</code>.</p>
+  <p>Create a custom table and define various fields in it using <code class="highlighter-rouge">hook_schema()</code>.</p>
 
 <p>This blog post is in continuation with the previous <a href="/drupal/drupalblockvisibility1.html">blog post</a>.</p>
 
@@ -91,70 +91,70 @@ The parameters that we need to set when we create or edit a block are:</p>
 <li><em>Users</em> : to allow per user customizations for blocks.</li>
 </ul>
 <p>These parameters are available out of the box in any drupal site. To create custom parameters refer to this <a href="/drupal/drupalblockvisibility1.html">blog post</a>.
-We need to save these parameters/configurations into the database in a custom table. To create a custom table we can use <code>hook_schema()</code>. <code>hook_schema()</code> takes care of the table creation and deletion at the time of module installation and un-install respectively. In the following code, I’ve created a custom table named <code>block_date</code> inside the <code>hook_schema()</code> in the my_module.install file. Read more about hook_schema() <a href="https://api.drupal.org/api/function/hook_schema">here</a> and .install files <a href="https://www.drupal.org/node/876250">here</a>.</p>
+We need to save these parameters/configurations into the database in a custom table. To create a custom table we can use <code class="highlighter-rouge">hook_schema()</code>. <code class="highlighter-rouge">hook_schema()</code> takes care of the table creation and deletion at the time of module installation and un-install respectively. In the following code, I’ve created a custom table named <code class="highlighter-rouge">block_date</code> inside the <code class="highlighter-rouge">hook_schema()</code> in the my_module.install file. Read more about hook_schema() <a href="https://api.drupal.org/api/function/hook_schema">here</a> and .install files <a href="https://www.drupal.org/node/876250">here</a>.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">/**</span>
-<span class="sr"> * Implements hook_schema().</span>
-<span class="sr"> */</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">/**
+ * Implements hook_schema().
+ */</span>
 <span class="n">function</span> <span class="n">my_module_schema</span><span class="p">()</span> <span class="p">{</span>
-  <span class="vg">$schema</span><span class="o">[</span><span class="s1">&#39;block_date&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
-    <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Sets up display criteria for blocks based on post date&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
-      <span class="s1">&#39;module&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
-        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;varchar&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span> <span class="o">=&gt;</span> <span class="mi">64</span><span class="p">,</span>
-        <span class="s1">&#39;not null&#39;</span> <span class="o">=&gt;</span> <span class="no">TRUE</span><span class="p">,</span>
-        <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The block&#39;s origin module, from {block}.module.&quot;</span><span class="p">,</span>
+  <span class="vg">$schema</span><span class="p">[</span><span class="s1">'block_date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
+    <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'Sets up display criteria for blocks based on post date'</span><span class="p">,</span>
+    <span class="s1">'fields'</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
+      <span class="s1">'module'</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'varchar'</span><span class="p">,</span>
+        <span class="s1">'length'</span> <span class="o">=&gt;</span> <span class="mi">64</span><span class="p">,</span>
+        <span class="s1">'not null'</span> <span class="o">=&gt;</span> <span class="no">TRUE</span><span class="p">,</span>
+        <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s2">"The block's origin module, from {block}.module."</span><span class="p">,</span>
       <span class="p">),</span>
-      <span class="s1">&#39;delta&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
-        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;varchar&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">,</span>
-        <span class="s1">&#39;not null&#39;</span> <span class="o">=&gt;</span> <span class="no">TRUE</span><span class="p">,</span>
-        <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The block&#39;s unique delta within module, from {block}.delta.&quot;</span><span class="p">,</span>
+      <span class="s1">'delta'</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'varchar'</span><span class="p">,</span>
+        <span class="s1">'length'</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">,</span>
+        <span class="s1">'not null'</span> <span class="o">=&gt;</span> <span class="no">TRUE</span><span class="p">,</span>
+        <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s2">"The block's unique delta within module, from {block}.delta."</span><span class="p">,</span>
       <span class="p">),</span>
-      <span class="s1">&#39;res_date&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
-        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;varchar&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">,</span>
-        <span class="s1">&#39;not null&#39;</span> <span class="o">=&gt;</span> <span class="no">TRUE</span><span class="p">,</span>
-        <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;The date this block&#39;s visibility should be restricted according to.&quot;</span><span class="p">,</span>
+      <span class="s1">'res_date'</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'varchar'</span><span class="p">,</span>
+        <span class="s1">'length'</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">,</span>
+        <span class="s1">'not null'</span> <span class="o">=&gt;</span> <span class="no">TRUE</span><span class="p">,</span>
+        <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s2">"The date this block's visibility should be restricted according to."</span><span class="p">,</span>
       <span class="p">),</span>
-      <span class="s1">&#39;start&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
-        <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;varchar&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">,</span>
-        <span class="s1">&#39;description&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Visibility before or after&quot;</span><span class="p">,</span>
+      <span class="s1">'start'</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'varchar'</span><span class="p">,</span>
+        <span class="s1">'length'</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">,</span>
+        <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s2">"Visibility before or after"</span><span class="p">,</span>
       <span class="p">),</span>
     <span class="p">),</span>
-    <span class="s1">&#39;primary key&#39;</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;module&#39;</span><span class="p">,</span> <span class="s1">&#39;delta&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">),</span>
+    <span class="s1">'primary key'</span> <span class="o">=&gt;</span> <span class="n">array</span><span class="p">(</span><span class="s1">'module'</span><span class="p">,</span> <span class="s1">'delta'</span><span class="p">,</span> <span class="s1">'start'</span><span class="p">),</span>
   <span class="p">);</span>
   <span class="k">return</span> <span class="vg">$schema</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
-<p>Here <code>'fields'</code> is an array of fields. So the table <code>block_date</code> would be created when we install our module and it would have the above defined fields.
+<p>Here <code class="highlighter-rouge">'fields'</code> is an array of fields. So the table <code class="highlighter-rouge">block_date</code> would be created when we install our module and it would have the above defined fields.
 So we have our custom table created and data would be queried into it when a block is edited or a new block is created. The code for the database query would look like this:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vg">$query</span> <span class="o">=</span> <span class="n">db_insert</span><span class="p">(</span><span class="s1">&#39;block_date&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">fields</span><span class="p">(</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;res_date&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span><span class="s1">&#39;module&#39;</span><span class="p">,</span> <span class="s1">&#39;delta&#39;</span><span class="p">));</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vg">$query</span> <span class="o">=</span> <span class="n">db_insert</span><span class="p">(</span><span class="s1">'block_date'</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">fields</span><span class="p">(</span><span class="n">array</span><span class="p">(</span><span class="s1">'res_date'</span><span class="p">,</span> <span class="s1">'start'</span><span class="p">,</span><span class="s1">'module'</span><span class="p">,</span> <span class="s1">'delta'</span><span class="p">));</span>
     <span class="vg">$query</span><span class="o">-&gt;</span><span class="n">values</span><span class="p">(</span><span class="n">array</span><span class="p">(</span>
-      <span class="s1">&#39;res_date&#39;</span> <span class="o">=&gt;</span> <span class="vg">$form_state</span><span class="o">[</span><span class="s1">&#39;values&#39;</span><span class="o">][</span><span class="s1">&#39;res_date&#39;</span><span class="o">]</span><span class="p">,</span>
-      <span class="s1">&#39;start&#39;</span> <span class="o">=&gt;</span> <span class="vg">$form_state</span><span class="o">[</span><span class="s1">&#39;values&#39;</span><span class="o">][</span><span class="s1">&#39;start&#39;</span><span class="o">]</span><span class="p">,</span>
-      <span class="s1">&#39;module&#39;</span> <span class="o">=&gt;</span> <span class="vg">$form_state</span><span class="o">[</span><span class="s1">&#39;values&#39;</span><span class="o">][</span><span class="s1">&#39;module&#39;</span><span class="o">]</span><span class="p">,</span>
-      <span class="s1">&#39;delta&#39;</span> <span class="o">=&gt;</span> <span class="vg">$form_state</span><span class="o">[</span><span class="s1">&#39;values&#39;</span><span class="o">][</span><span class="s1">&#39;delta&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="s1">'res_date'</span> <span class="o">=&gt;</span> <span class="vg">$form_state</span><span class="p">[</span><span class="s1">'values'</span><span class="p">][</span><span class="s1">'res_date'</span><span class="p">],</span>
+      <span class="s1">'start'</span> <span class="o">=&gt;</span> <span class="vg">$form_state</span><span class="p">[</span><span class="s1">'values'</span><span class="p">][</span><span class="s1">'start'</span><span class="p">],</span>
+      <span class="s1">'module'</span> <span class="o">=&gt;</span> <span class="vg">$form_state</span><span class="p">[</span><span class="s1">'values'</span><span class="p">][</span><span class="s1">'module'</span><span class="p">],</span>
+      <span class="s1">'delta'</span> <span class="o">=&gt;</span> <span class="vg">$form_state</span><span class="p">[</span><span class="s1">'values'</span><span class="p">][</span><span class="s1">'delta'</span><span class="p">],</span>
     <span class="p">));</span>
   <span class="vg">$query</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
-<p>This is to be put inside the submit handler of the form we altered using <code>hook_form_FORM_ID_alter()</code> in the previous blog post so that the query runs when the form is submitted after some validations, of course.</p>
+<p>This is to be put inside the submit handler of the form we altered using <code class="highlighter-rouge">hook_form_FORM_ID_alter()</code> in the previous blog post so that the query runs when the form is submitted after some validations, of course.</p>
 
 <p>Duh! We have a problem there, Know what?</p>
 
 <p>If we edit a block whose visibility parameters are already set, and we happen to change the parameters and submit the form again, we would be querying into the database two different parameters of visibility for the same block. And that, sure as hell, is a problem.</p>
 
-<p>To avoid this we would need to delete the previously set parameters for that block from the database. To do that we use the following query before inserting new data into the database in the submit handler of the <code>block_admin_configure</code> form.</p>
+<p>To avoid this we would need to delete the previously set parameters for that block from the database. To do that we use the following query before inserting new data into the database in the submit handler of the <code class="highlighter-rouge">block_admin_configure</code> form.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span> <span class="c1">#delete already set date configurations</span>
-  <span class="n">db_delete</span><span class="p">(</span><span class="s1">&#39;block_date&#39;</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="n">condition</span><span class="p">(</span><span class="s1">&#39;module&#39;</span><span class="p">,</span> <span class="vg">$form_state</span><span class="o">[</span><span class="s1">&#39;values&#39;</span><span class="o">][</span><span class="s1">&#39;module&#39;</span><span class="o">]</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="n">condition</span><span class="p">(</span><span class="s1">&#39;delta&#39;</span><span class="p">,</span> <span class="vg">$form_state</span><span class="o">[</span><span class="s1">&#39;values&#39;</span><span class="o">][</span><span class="s1">&#39;delta&#39;</span><span class="o">]</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span> <span class="c1">#delete already set date configurations</span>
+  <span class="n">db_delete</span><span class="p">(</span><span class="s1">'block_date'</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="n">condition</span><span class="p">(</span><span class="s1">'module'</span><span class="p">,</span> <span class="vg">$form_state</span><span class="p">[</span><span class="s1">'values'</span><span class="p">][</span><span class="s1">'module'</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="n">condition</span><span class="p">(</span><span class="s1">'delta'</span><span class="p">,</span> <span class="vg">$form_state</span><span class="p">[</span><span class="s1">'values'</span><span class="p">][</span><span class="s1">'delta'</span><span class="p">])</span>
+    <span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span></code></pre></figure>
 
 <p>So now we have a block created or edited and the parameters collected from it and stored into a custom table in our database. Now we need to use these parameters to determine blocks’ visibility. I would be writing another blog post to explain how to use these parameters to manage a block’s visibility.</p>
 

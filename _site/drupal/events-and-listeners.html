@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Symfony/Drupal: Event Subscribers and Event Listeners.</title>
+    <meta name="keywords" content="Nida, Nida Shah, Nida Ismail Shah, Back-End, Developer, Kashmir">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="Nida Ismail Shah" />
+    <meta property="og:type" content="Back-End Developer" />
+    <meta property="og:image" content="http://nidashah.com/images/share.png" />
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Some lines , a bit elaborated">
+    <link rel="canonical" href="http://localhost:4000/drupal/events-and-listeners.html">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <!--[if IE]>
+      <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <![endif]-->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+</head>
+
+
+    <body>
+        <div class = headerb>
+           <header class="site-header">
+
+  <div class="wrap">
+
+    <a class="site-title" href="/">Nida Ismail Shah</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 18 15" enable-background="new 0 0 18 15" xml:space="preserve">
+          <path fill="#505050" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0
+            h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#505050" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484
+            h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#505050" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0
+            c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
+       <a href="/index.html" class="page-link">Home</a>
+        
+          <a class="page-link" href="/about/">About</a>
+        
+          <a class="page-link" href="/blog/">Blog</a>
+        
+          
+        
+          
+        
+          <a class="page-link" href="/poetry/">Poems</a>
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+        </div>
+        <div class="page-contenth">
+          <div class="wrap">
+          <div class="post">
+
+  <header class="post-header">
+    <h1>Symfony/Drupal: Event Subscribers and Event Listeners.</h1>
+    <p class="meta">Dec 28, 2016</p>
+  </header>
+
+  <article class="post-content">
+  <p>Following up on my talk at the <a href="https://events.drupal.org/dublin2016/">DrupalCon Dublin</a> about “<a href="https://events.drupal.org/dublin2016/sessions/state-hooking-drupal">The state of hooking into Drupal</a>”, I was presenting on <a href="http://www.slideshare.net/NidaIsmailShah/hooks-and-events-in-drupal-8">Hooks and Events in Drupal 8</a> to my colleagues when someone asked a question about the concept of event subscribers and event listeners. I didn’t have an answer then because I believed both meant the same thing, which they do (somewhat) , however here is an attempt to answer the question in a more elaborate way.</p>
+
+<p>We know that Drupal 8 uses Symfony’s Event Dispatcher component and we also know that to be able to hook into Drupal whenever an event is triggered we have to subscribe to the event. This post is about how we can react to the occurrence of an event  i.e subscribe to an event or listen to it with Event Subscribers and Event Listeners. I’ll try to cover both Symfony and Drupal aspects of it.</p>
+
+<blockquote>The <a href="http://symfony.com/doc/current/components/event_dispatcher.html"><strong>EventDispatcher component</strong></a> provides tools that allow your application components to communicate with each other by dispatching events and listening to them.</blockquote>
+
+<p>The basic idea of having events, dispatchers, subscribers and listeners is to make our applications extensible and to be able to run code or perform actions at particular stages through the application life cycle. The stages are pre decided by triggering or dispatching events. The listeners and subscribers can then register themselves to be notified by the dispatcher when the event actually occurs so they can run the code they want or perform actions they want. Read more about events <a href="http://symfony.com/doc/current/components/event_dispatcher.html"><strong>here</strong></a>.</p>
+
+<p>During the life cycle of an application lots of event notifications are triggered. We can listen to these notifications and respond to them by executing any piece of code. One can listen to an event either by creating an event subscriber or by creating an event listener. Event listeners and event subscribers serve the same purpose, just in a slightly different way.</p>
+
+<h2 id="event_listener">Event Listeners.</h2>
+
+<p>An event listener is a class, defined as a service, that has methods that get registered to be executed when certain events occur. All of this happens at the registration time. What method would be executed at what event is set in the service definition. The listener class doesn’t know what events it’s listening to. This information is always in the service definition. Each method takes in as an argument the event object that it wants to listen to.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># src/AppBundle/EventListener/ExceptionListener.php</span>
+<span class="n">namespace</span> <span class="no">AppBundle</span><span class="p">\</span><span class="no">EventListener</span><span class="p">;</span>
+
+<span class="n">use</span> <span class="no">Symfony</span><span class="p">\</span><span class="no">Component</span><span class="p">\</span><span class="no">HttpKernel</span><span class="p">\</span><span class="no">Event</span><span class="p">\</span><span class="no">GetResponseForExceptionEvent</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">ExceptionListener</span>
+<span class="p">{</span>
+    <span class="kp">public</span> <span class="n">function</span> <span class="n">onKernelException</span><span class="p">(</span><span class="no">GetResponseForExceptionEvent</span> <span class="vg">$event</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="c1"># do something.</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Each event receives a slightly different type of <code class="highlighter-rouge">$event</code> object. For the <code class="highlighter-rouge">kernel.exception</code> event, it is <code class="highlighter-rouge">GetResponseForExceptionEvent</code>. To see what type of object each event listener receives check the documentation about the specific event you’re listening to.</p>
+
+<p>Now that the listener class is created, you just need to register it as a service and notify Symfony that it is a <em>listener</em> on the <code class="highlighter-rouge">kernel.exception</code> event by using a special “tag”:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span> <span class="ss">name: </span><span class="n">kernel</span><span class="p">.</span><span class="nf">event_listener</span><span class="p">,</span> <span class="ss">event: </span><span class="n">kernel</span><span class="p">.</span><span class="nf">exception</span> <span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/config/services.yml</span>
+<span class="ss">services:
+    </span><span class="n">app</span><span class="p">.</span><span class="nf">exception_listener</span><span class="p">:</span>
+        <span class="ss">class: </span><span class="no">AppBundle</span><span class="p">\</span><span class="no">EventListener</span><span class="p">\</span><span class="no">ExceptionListener</span>
+        <span class="ss">tags:
+            </span><span class="o">-</span> <span class="p">{</span> <span class="ss">name: </span><span class="n">kernel</span><span class="p">.</span><span class="nf">event_listener</span><span class="p">,</span> <span class="ss">event: </span><span class="n">kernel</span><span class="p">.</span><span class="nf">exception</span> <span class="p">}</span></code></pre></figure>
+
+<p>There is an optional tag attribute called <code class="highlighter-rouge">method</code> which defines which method to execute when the event is triggered. By default the name of the method is <em>on + “camel-cased event name”</em>. If the event is <code class="highlighter-rouge">kernel.exception</code> the method executed by default is <code class="highlighter-rouge">onKernelException()</code>.</p>
+
+<p>The other optional tag attribute is called <code class="highlighter-rouge">priority</code>, which defaults to 0 and it controls the order in which listeners are executed (the highest the priority, the earlier a listener is executed). This is useful when you need to guarantee that one listener is executed before another. The priorities of the internal Symfony listeners usually range from -255 to 255 but your own listeners can use any positive or negative integer.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># app/config/services.yml</span>
+<span class="ss">services:
+    </span><span class="n">app</span><span class="p">.</span><span class="nf">exception_listener</span><span class="p">:</span>
+        <span class="ss">class: </span><span class="no">AppBundle</span><span class="p">\</span><span class="no">EventListener</span><span class="p">\</span><span class="no">ExceptionListener</span>
+        <span class="ss">tags:
+            </span><span class="o">-</span> <span class="p">{</span> <span class="ss">name: </span><span class="n">kernel</span><span class="p">.</span><span class="nf">event_listener</span><span class="p">,</span> <span class="ss">event: </span><span class="n">kernel</span><span class="p">.</span><span class="nf">exception</span><span class="p">,</span> <span class="ss">method: </span><span class="n">alterException</span><span class="p">,</span> <span class="ss">priority: </span><span class="mi">100</span> <span class="p">}</span></code></pre></figure>
+
+<p>An event listener doesn’t necessarily have to be a class on its own. A php callable (even a <a href="http://php.net/manual/en/functions.anonymous.php">php closure</a>) can also be added as a listener to an event.</p>
+
+<p>So another way of registering event listeners is via the <code class="highlighter-rouge">addListener()</code> method. We can add listeners to a dispatcher for any event by calling the <code class="highlighter-rouge">addListener()</code> method and passing in the <code class="highlighter-rouge">event_name</code> of the event we want to listen to as the first argument and the callable, that would get called when the actual event occurs, as the second argument. We can also provide the priority of the execution of our callable as the optional third argument.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="vg">$dispatcher</span> <span class="o">=</span> <span class="p">\</span><span class="no">Drupal</span><span class="o">::</span><span class="n">service</span><span class="p">(</span><span class="s1">'event_dispatcher'</span><span class="p">);</span>
+
+  <span class="vg">$dispatcher</span><span class="o">-&gt;</span><span class="n">addListener</span><span class="p">(</span><span class="s2">"event.name"</span><span class="p">,</span> <span class="s2">"callable"</span><span class="p">);</span>
+  <span class="c1"># or</span>
+  <span class="c1"># $dispatcher-&gt;addListener("event.name", "callable", priority);</span></code></pre></figure>
+
+<p>For the object orientation part of it, we can also provide the second argument as an array with its first element being the instance of the object our callable belongs to and second element being the name of the method (our callable).</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="vg">$dispatcher</span> <span class="o">=</span> <span class="p">\</span><span class="no">Drupal</span><span class="o">::</span><span class="n">service</span><span class="p">(</span><span class="s1">'event_dispatcher'</span><span class="p">);</span>
+
+  <span class="c1"># Provided OurListenerClass is defined and has implemented the "method".</span>
+  <span class="vg">$dispatcher</span><span class="o">-&gt;</span><span class="n">addListener</span><span class="p">(</span><span class="s2">"event.name"</span><span class="p">,</span> <span class="n">array</span><span class="p">(</span><span class="kp">new</span> <span class="no">OurListenerClass</span><span class="p">(),</span> <span class="s2">"method"</span><span class="p">));</span></code></pre></figure>
+
+<p><em>Note that Drupal as of Drupal 8.2 doesn’t support the service definition way of adding event listeners for better DX (developer experience) reasons so as to prevent the confusions of having multiple ways of doing the same thing.</em> As of Drupal 8.2, it promotes extending the code and using the event dispatcher component via event subscribers only.</p>
+
+<p>This means that if you were to define a class with a method <code class="highlighter-rouge">onKernelRequest()</code> and define it as a service under a tag <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">kernel.event_listener,</span><span class="w"> </span><span class="err">event:</span><span class="w"> </span><span class="err">kernel.request</span><span class="w"> </span><span class="p">}</span></code> to listen to the <code class="highlighter-rouge">kernel.request</code> event, <strong>it won’t work</strong>. This is because drupal doesn’t support tagging services as event listeners for reasons already mentioned. Drupal only checks for the services tagged with the <code class="highlighter-rouge">event_subscriber</code> tag in the class <a href="http://cgit.drupalcode.org/drupal/tree/core/lib/Drupal/Core/DependencyInjection/Compiler/RegisterEventSubscribersPass.php">Drupal\Core\DependencyInjection\Compiler\RegisterEventSubscribersPass.</a>  See also <a href="https://api.drupal.org/api/drupal/core!core.api.php/group/service_tag/8.2.x">Service tags</a> in Drupal.</p>
+
+<p>However we can still add an event listener to listen to any event by calling the addListener() method on the dispatcher object.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="vg">$dispatcher</span> <span class="o">=</span> <span class="p">\</span><span class="no">Drupal</span><span class="o">::</span><span class="n">service</span><span class="p">(</span><span class="s1">'event_dispatcher'</span><span class="p">);</span>
+
+  <span class="c1"># Provided OurListenerClass is defined and has implemented the onKernelRequest method.</span>
+  <span class="vg">$dispatcher</span><span class="o">-&gt;</span><span class="n">addListener</span><span class="p">(</span><span class="s2">"kernel.request"</span><span class="p">,</span> <span class="n">array</span><span class="p">(</span><span class="kp">new</span> <span class="no">OurListenerClass</span><span class="p">,</span> <span class="s2">"onKernelRequest"</span><span class="p">));</span></code></pre></figure>
+
+<h2>Event Subscribers</h2>
+
+<p>Event subscriber is a class, defined as a service, that listens to one or more events by defining one or more methods. One method can listen to one or more events and one event can be listened to by one or more methods. All of this is determined at the runtime. What methods listen to what events is known to the event subscriber class unlike event listeners. Event subscribers do this by implementing the <code class="highlighter-rouge">getSubscribedEvents()</code> method which returns an array of all the events that the subscriber would listen to and also the method that would be executed when any of those events occurs.</p>
+
+<p>In a given subscriber, different methods can listen to the same event. The order in which methods are executed is defined by the priority parameter of each method (the higher the priority the earlier the method is called). To learn more about event subscribers, read about <a href="http://symfony.com/doc/current/components/event_dispatcher.html"><strong>The EventDispatcher component</strong></a>.</p>
+
+<p>To create a subscribe we need to create a class, defined as a service, implementing <code class="highlighter-rouge">Symfony\Component\EventDispatcher\EventSubscriberInterface</code> interface and thus also implementing the getSubscribedEvents() method from the EventSubscriberInterface to return an array of all the events we want to listen to with their corresponding callbacks. the callbacks also belong to the same class.</p>
+
+<p>Listing down the things we need to do to create an event subscriber:</p>
+<ul>
+ <li>Create a subscriber class implementing <em>EventSubscriberInterface</em>.</li>
+ <li>Implement <em>getSubscribedEvents()</em> method.</li>
+ <li>Write callables.</li>
+ <li>Define the subscriber class as a service and tag it with <em>event_subscriber</em>.</li>
+ </ul>
+<p>Talking about Drupal 8 there are multiple examples one can cite where event subscribers have been used. Following is an example from Drupal Core from <a href="http://cgit.drupalcode.org/drupal/tree/core/lib/Drupal/Core/Config/ConfigFactory.php">Drupal\Core\Config\ConfigFactory</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">namespace</span> <span class="no">Drupal</span><span class="p">\</span><span class="no">Core</span><span class="p">\</span><span class="no">Config</span><span class="p">;</span>
+ <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+
+<span class="nf">class</span> <span class="no">ConfigFactory</span> <span class="n">implements</span> <span class="no">ConfigFactoryInterface</span><span class="p">,</span> <span class="no">EventSubscriberInterface</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nf">.</span><span class="p">.</span>
+
+  <span class="nf">/</span><span class="o">**</span>
+   <span class="o">*</span> <span class="no">Updates</span> <span class="n">stale</span> <span class="n">static</span> <span class="n">cache</span> <span class="n">entries</span> <span class="k">when</span> <span class="n">configuration</span> <span class="n">is</span> <span class="n">saved</span><span class="p">.</span>
+   <span class="nf">*</span>
+   <span class="o">*</span> <span class="vi">@param</span> <span class="no">ConfigCrudEvent</span> <span class="vg">$event</span>
+   <span class="o">*</span>   <span class="no">The</span> <span class="n">configuration</span> <span class="n">event</span><span class="p">.</span>
+   <span class="nf">*</span><span class="o">/</span>
+  <span class="kp">public</span> <span class="n">function</span> <span class="n">onConfigSave</span><span class="p">(</span><span class="no">ConfigCrudEvent</span> <span class="vg">$event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1"># Ensure that the static cache contains up to date configuration objects by</span>
+    <span class="c1"># replacing the data on any entries for the configuration object apart</span>
+    <span class="c1"># from the one that references the actual config object being saved.</span>
+    <span class="vg">$saved_config</span> <span class="o">=</span> <span class="vg">$event</span><span class="o">-&gt;</span><span class="n">getConfig</span><span class="p">();</span>
+    <span class="n">foreach</span> <span class="p">(</span><span class="vg">$this</span><span class="o">-&gt;</span><span class="n">getConfigCacheKeys</span><span class="p">(</span><span class="vg">$saved_config</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">())</span> <span class="n">as</span> <span class="vg">$cache_key</span><span class="p">)</span> <span class="p">{</span>
+      <span class="vg">$cached_config</span> <span class="o">=</span> <span class="vg">$this</span><span class="o">-&gt;</span><span class="n">cache</span><span class="p">[</span><span class="vg">$cache_key</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="vg">$cached_config</span> <span class="o">!==</span> <span class="vg">$saved_config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1"># We can not just update the data since other things about the object</span>
+        <span class="c1"># might have changed. For example, whether or not it is new.</span>
+        <span class="vg">$this</span><span class="o">-&gt;</span><span class="n">cache</span><span class="p">[</span><span class="vg">$cache_key</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">initWithData</span><span class="p">(</span><span class="vg">$saved_config</span><span class="o">-&gt;</span><span class="n">getRawData</span><span class="p">());</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="sr">/**
+   * Removes stale static cache entries when configuration is deleted.
+   *
+   * @param \Drupal\Core\Config\ConfigCrudEvent $event
+   *   The configuration event.
+   */</span>
+  <span class="kp">public</span> <span class="n">function</span> <span class="n">onConfigDelete</span><span class="p">(</span><span class="no">ConfigCrudEvent</span> <span class="vg">$event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1"># Ensure that the static cache does not contain deleted configuration.</span>
+    <span class="n">foreach</span> <span class="p">(</span><span class="vg">$this</span><span class="o">-&gt;</span><span class="n">getConfigCacheKeys</span><span class="p">(</span><span class="vg">$event</span><span class="o">-&gt;</span><span class="n">getConfig</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">())</span> <span class="n">as</span> <span class="vg">$cache_key</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">unset</span><span class="p">(</span><span class="vg">$this</span><span class="o">-&gt;</span><span class="n">cache</span><span class="p">[</span><span class="vg">$cache_key</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="sr">/**
+   * {@inheritdoc}
+   */</span>
+  <span class="n">static</span> <span class="n">function</span> <span class="n">getSubscribedEvents</span><span class="p">()</span> <span class="p">{</span>
+    <span class="vg">$events</span><span class="p">[</span><span class="no">ConfigEvents</span><span class="o">::</span><span class="no">SAVE</span><span class="p">][]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s1">'onConfigSave'</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+    <span class="vg">$events</span><span class="p">[</span><span class="no">ConfigEvents</span><span class="o">::</span><span class="no">DELETE</span><span class="p">][]</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s1">'onConfigDelete'</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+    <span class="k">return</span> <span class="vg">$events</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="p">.</span><span class="nf">.</span><span class="o">.</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Now that the subscriber class is created, you just need to register it as a service and notify Symfony/Drupal that it is an “event subscriber”  by using a special “tag”: { name: event_subscriber }</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># core.services.yml</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">factory</span><span class="p">:</span>
+    <span class="ss">class: </span><span class="no">Drupal</span><span class="p">\</span><span class="no">Core</span><span class="p">\</span><span class="no">Config</span><span class="p">\</span><span class="no">ConfigFactory</span>
+    <span class="ss">tags:
+      </span><span class="o">-</span> <span class="p">{</span> <span class="ss">name: </span><span class="n">event_subscriber</span> <span class="p">}</span>
+      <span class="o">-</span> <span class="p">{</span> <span class="ss">name: </span><span class="n">service_collector</span><span class="p">,</span> <span class="ss">tag: </span><span class="s1">'config.factory.override'</span><span class="p">,</span> <span class="ss">call: </span><span class="n">addOverride</span> <span class="p">}</span>
+    <span class="ss">arguments: </span><span class="p">[</span><span class="s1">'@config.storage'</span><span class="p">,</span> <span class="s1">'@event_dispatcher'</span><span class="p">,</span> <span class="s1">'@config.typed'</span><span class="p">]</span></code></pre></figure>
+
+<p><em>Note that how we subscribe to events in Drupal may change based on the issue here: <a href="https://www.drupal.org/node/2023613">https://www.drupal.org/node/2023613</a></em></p>
+
+<h3>Event Listeners versus Event Subscribers.</h3>
+
+<p>Although Drupal developers don’t have much of a choice here and should be using event subscribers wherever needed but event listeners and event subscribers can be used in any application independently. The choice is personal but subscribers are easier to reuse because the knowledge of the events is kept in the class rather than in the service definition. This is the reason why Symfony uses subscribers internally and probably why drupal also supports only event subscribers only.</p>
+
+<h3>Summary</h3>
+<ul>
+<li>Event listeners and Subscribers serve the same purpose and can be used in an application indistinctly.</li>
+<li>Event listeners can be added via service definition and also with <em>addListener()</em> method.</li>
+<li>Drupal doesn't support service definition way of adding event listeners. Listeners can be added only using the <em>addListener()</em> method.</li>
+<li>Event subscribers are added via service definition and by implementing the <em>getSubscribedEvents()</em> method.</li>
+<li>Event subscribers are easier to use and reuse.</li>
+<li>Event listener is registered specifying the events on which it listens. The subscriber has a method telling the dispatcher what events it is listening to.</li>
+</ul>
+
+<p><span class="disclaimer-tag">Note: Some of the definitions and examples have been taken from <a href="http://symfony.com/doc/current/index.html">Symfony documentation</a>.</span>
+<span class="fix-tag">If you find any typo or any error, please feel free to fix and raise a pull request <a href="https://github.com/nidaismailshah/nidaismailshah.github.io">here</a>.</span></p>
+
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'nidaismailshah'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+  </article>
+
+</div>
+<div class= "share">
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54af39a75709d235" async="async"></script>
+</div>
+
+          </div>
+        </div>
+      
+    </body>
+</html>
